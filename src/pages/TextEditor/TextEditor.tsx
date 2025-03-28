@@ -44,7 +44,7 @@ function TextEditor() {
       }),
     ],
     editorProps: {
-      handleKeyDown: (view, event) => {
+      handleKeyDown: (_view, event) => {
         if (event.ctrlKey && event.key === 'c') {
           handlePasteImage();
           return true;
