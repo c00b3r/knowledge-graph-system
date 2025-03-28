@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router';
-import Editor from '../pages/Editor/Editor';
 import Graph from '../pages/Graph/Graph';
 import MainPage from '../pages/MainPage';
+import TextEditor from '../pages/TextEditor/TextEditor';
 
 export const route = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ export const route = createBrowserRouter([
     children: [
       {
         path: '/editor',
-        element: <Editor />,
+        element: <TextEditor />,
       },
       {
         path: '/graph',

@@ -1,0 +1,64 @@
+.editor-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  min-height: 300px;
+}
+
+.ProseMirror {
+  height: 100%;
+  min-height: 450px;
+  padding: 20px;
+  outline: none;
+  table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    width: 50%;
+
+    td,
+    th {
+      border: 2px solid #ddd;
+      padding: 8px 12px;
+      position: relative;
+      min-width: 100px;
+    }
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+}
+
+.ProseMirror img {
+  max-width: 50%;
+  height: auto;
+  border: 1px dashed #d9d9d9;
+  border-radius: 4px;
+}
+
+.resize-cursor {
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.ProseMirror pre {
+  background: #282c34;
+  color: #abb2bf;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* Подсветка синтаксиса */
+.hljs {
+  background: #282c34;
+  color: #abb2bf;
+}
+
+/* Кнопка активного code block */
+.editor-toolbar .ant-btn-primary {
+  background-color: #1890ff;
+}
