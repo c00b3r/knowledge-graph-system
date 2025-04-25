@@ -5,17 +5,30 @@ import AchievementsIcon from '../icons/AchievementsIcon';
 import HintIcon from '../icons/HintIcon';
 import LogoutIcon from '../icons/LogoutIcon';
 import './NavigationMenu.css';
+import { NavLink } from 'react-router';
 
 function NavigationMenu() {
   return (
     <div className='navigation-menu'>
       <nav className='navigation-menu-nav'>
-        <div className='navigation-menu-nav-item'>
-          <TextIcon />
-        </div>
-        <div className='navigation-menu-nav-item'>
-          <GraphIcon />
-        </div>
+        <NavLink to='/editor'>
+          {({ isActive }) => (
+            <div
+              className={`navigation-menu-nav-item ${isActive ? 'active' : ''}`}
+            >
+              <TextIcon />
+            </div>
+          )}
+        </NavLink>
+        <NavLink to='/graph'>
+          {({ isActive }) => (
+            <div
+              className={`navigation-menu-nav-item ${isActive ? 'active' : ''}`}
+            >
+              <GraphIcon />
+            </div>
+          )}
+        </NavLink>
         <div className='navigation-menu-nav-item'>
           <ListIcon />
         </div>

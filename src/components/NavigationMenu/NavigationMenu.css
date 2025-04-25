@@ -23,10 +23,16 @@
   align-items: center;
   justify-content: center;
   color: rgba(131, 135, 144, 1);
+  transition: all 0.2s ease-in-out;
 }
 
 .navigation-menu-nav-item:hover {
-  background-color: #d9d9d9;
-  color: rgba(4, 91, 255, 1);
+  background-color: #f0f0f0;
   cursor: pointer;
+}
+
+.active {
+  color: rgba(4, 91, 255, 1);
+  background-color: #cadaf7;
+  border-radius: 4px;
 }
