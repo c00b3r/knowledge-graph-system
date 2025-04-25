@@ -52,13 +52,11 @@
   overflow-x: auto;
 }
 
-/* Подсветка синтаксиса */
 .hljs {
   background: #282c34;
   color: #abb2bf;
 }
 
-/* Кнопка активного code block */
 .editor-toolbar .ant-btn-primary {
   background-color: #1890ff;
 }

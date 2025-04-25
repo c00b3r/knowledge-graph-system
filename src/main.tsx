@@ -1,7 +1,26 @@
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { RouterProvider } from 'react-router';
-import { route } from './utils/route';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import Graph from './pages/Graph/Graph';
+import TextEditor from './pages/TextEditor/TextEditor';
+import DefaultLayout from './layout/DefaultLayout';
+
+const route = createBrowserRouter([
+  {
+    path: '',
+    element: <DefaultLayout />,
+    children: [
+      {
+        path: '/editor',
+        element: <TextEditor />,
+      },
+      {
+        path: '/graph',
+        element: <Graph />,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById('root')!).render(
   <RouterProvider router={route} />
