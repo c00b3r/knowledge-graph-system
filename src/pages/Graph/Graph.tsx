@@ -58,7 +58,6 @@ function Graph() {
     ];
 
     const options = {
-      height: '600px',
       nodes: {
         shape: 'circle',
         font: { size: 14, color: 'white' },
@@ -110,8 +109,9 @@ function Graph() {
       graphContainer.current!.style.cursor = 'default';
     });
   }, []);
+
   return (
-    <div ref={graphContainer} style={{ width: '100%', height: '600px' }}></div>
+    <div ref={graphContainer} style={{ width: '100%', height: '100vh' }}></div>
   );
 }
 
