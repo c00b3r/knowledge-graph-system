@@ -111,7 +111,7 @@ function Graph() {
   }, []);
 
   return (
-    <div ref={graphContainer} style={{ width: '100%', height: '100vh' }}></div>
+    <div ref={graphContainer} style={{ width: '100%', height: '100vh', backgroundColor: '#f0f2f5' }}></div>
   );
 }
 
