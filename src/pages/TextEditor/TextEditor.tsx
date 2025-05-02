@@ -14,6 +14,7 @@ const theme = {
   heading: {
     h1: 'editor-heading-h1',
   },
+  paragraph: 'editor-paragraph',
 };
 
 const initialConfig = {

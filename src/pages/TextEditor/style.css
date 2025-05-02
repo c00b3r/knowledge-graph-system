@@ -69,16 +69,31 @@
   height: 100vh;
   margin: 0 auto;
   outline: none;
-  border: 1px solid #e0e0e0;
   border-radius: 8px;
   background: white;
+  color: #000000d9;
+}
+
+.text-editor-content-editable::selection {
+  background: #cadaf7;
+  color: #000000d9;
 }
 
 .editor-heading-h1 {
-  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  margin-bottom: 16px;
+}
+
+.editor-paragraph {
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0.5px;
-  color: #000;
-  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  vertical-align: middle;
 }
