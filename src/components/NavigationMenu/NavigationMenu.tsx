@@ -42,15 +42,19 @@ function NavigationMenu() {
           to='/editor'
         />
         <NavigationItem title='Граф' icon={<GraphIcon />} to='/graph' />
-        <NavigationItem title='Список' icon={<ListIcon />} to='/' />
-        <NavigationItem title='Достижения' icon={<AchievementsIcon />} to='/' />
-        <NavigationItem title='Справка' icon={<HintIcon />} to='/' />
+        <NavigationItem title='Список' icon={<ListIcon />} to='/*' />
+        <NavigationItem
+          title='Достижения'
+          icon={<AchievementsIcon />}
+          to='/*'
+        />
+        <NavigationItem title='Справка' icon={<HintIcon />} to='/*' />
       </nav>
       <div className='navigation-menu-nav-item'>
         <NavigationItem
           title='Выйти в TeamProject'
           icon={<LogoutIcon />}
-          to='/'
+          to='/*'
         />
       </div>
     </div>
