@@ -1,0 +1,17 @@
+.question{
+    width: 162px;
+    height: 28px;
+    color: #838790;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+}
+
+.question:hover{
+    background-color: #CADAF7;
+    color: #045BFF;
+    cursor: pointer;
+}
