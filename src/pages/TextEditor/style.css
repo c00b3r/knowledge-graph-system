@@ -61,6 +61,11 @@
   background-color: #1890ff;
 }
 
+.text-editor-container {
+  background: #f0f2f5;
+  width: 100%;
+}
+
 .text-editor-content-editable {
   font-family: 'Roboto', sans-serif;
   padding: 32px;
@@ -70,7 +75,7 @@
   margin: 0 auto;
   outline: none;
   border-radius: 8px;
-  background: white;
+  background: #f0f2f5;
   color: #000000d9;
 }
 

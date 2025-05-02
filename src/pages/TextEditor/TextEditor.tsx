@@ -27,20 +27,22 @@ const initialConfig = {
 
 function TextEditor() {
   return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <InitialStructurePlugin />
-      <HandleEnterInHeadingPlugin />
-      <PlainTextPlugin
-        contentEditable={
-          <ContentEditable className='text-editor-content-editable' />
-        }
-        placeholder={null}
-        ErrorBoundary={LexicalErrorBoundary}
-      />
-      <HistoryPlugin />
-      <OnChangePlugin onChange={(editorState) => console.log(editorState)} />
-      <StrictHeadingPlugin />
-    </LexicalComposer>
+    <div className='text-editor-container'>
+      <LexicalComposer initialConfig={initialConfig}>
+        <InitialStructurePlugin />
+        <HandleEnterInHeadingPlugin />
+        <PlainTextPlugin
+          contentEditable={
+            <ContentEditable className='text-editor-content-editable' />
+          }
+          placeholder={null}
+          ErrorBoundary={LexicalErrorBoundary}
+        />
+        <HistoryPlugin />
+        <OnChangePlugin onChange={(editorState) => console.log(editorState)} />
+        <StrictHeadingPlugin />
+      </LexicalComposer>
+    </div>
   );
 }
 
