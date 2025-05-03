@@ -64,6 +64,8 @@
 .text-editor-container {
   background: #f0f2f5;
   width: 100%;
+  height: calc(100vh - 56px);
+  overflow-y: auto; 
 }
 
 .text-editor-content-editable {
@@ -71,7 +73,7 @@
   padding: 32px;
   min-height: 450px;
   width: 70vw;
-  height: 100vh;
+  height: auto;
   margin: 0 auto;
   outline: none;
   border-radius: 8px;

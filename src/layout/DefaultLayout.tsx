@@ -1,6 +1,7 @@
 import { Flex } from 'antd';
 import { Outlet } from 'react-router';
 import SideBar from '../components/SideBar/Sidebar';
+import MainHeader from '../components/MainHeader/MainHeader';
 
 function DefaultLayout() {
   return (
@@ -22,7 +23,10 @@ function DefaultLayout() {
           </NavLink>
         </Flex> */}
       <SideBar />
-      <Outlet />
+      <Flex vertical style={{ width: '100%' }}>
+        <MainHeader />
+        <Outlet />
+      </Flex>
     </Flex>
   );
 }

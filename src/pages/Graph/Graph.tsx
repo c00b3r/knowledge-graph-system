@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Network } from 'vis-network';
-import MainHeader from '../../components/MainHeader/MainHeader';
-import { Flex } from 'antd';
 
 function Graph() {
   const graphContainer = useRef<HTMLDivElement>(null);
@@ -114,10 +112,14 @@ function Graph() {
 
   return (
     <>
-      <Flex vertical>
-        <MainHeader/>
-        <div ref={graphContainer} style={{ width: '100%', height: 'calc(100vh - 56px)', backgroundColor: '#f0f2f5' }}></div>
-      </Flex>
+      <div
+        ref={graphContainer}
+        style={{
+          width: '100%',
+          height: 'calc(100vh - 56px)',
+          backgroundColor: '#f0f2f5',
+        }}
+      ></div>
     </>
   );
 }
