@@ -1,0 +1,11 @@
+.wrapper{
+    width: 100vh;
+    height: 56px;
+    background-color: white;
+}
+
+.arrows-wrapper{
+    position: relative;
+    top: 22px;
+    left: 32px;
+}
