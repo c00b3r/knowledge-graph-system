@@ -9,4 +9,44 @@
 
 .search-box{
     width: 162px;
+    
+}
+
+.ant-input-outlined {
+    background-color: #2E323A;
+    border-color: #838790;
+}
+
+.ant-input-outlined:hover {
+    background-color: #CADAF7;
+}
+
+.ant-input-outlined:focus {
+    background-color: #CADAF7;
+    border-color: #CADAF7;
+    box-shadow: none;
+}
+
+.ant-input-search-button {
+    background-color: #2E323A;
+    border-color: none;
+    box-shadow: none;
+}
+
+.ant-input-outlined::placeholder{
+    color: #838790;
+}
+
+.ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover {
+    background-color: #CADAF7;
+}
+
+.ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary){
+    color: #838790;
+    border-color: #838790;
+}
+
+.ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):hover{
+    color: #838790;
+    border-color: #4096ff;
 }
