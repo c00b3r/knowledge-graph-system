@@ -48,7 +48,7 @@ function NavigationMenu() {
           icon={<AchievementsIcon />}
           to='/*'
         />
-        <NavigationItem title='Справка' icon={<HintIcon />} to='/*' />
+        <NavigationItem title='Справка' icon={<HintIcon />} to='/info' />
       </nav>
       <div className='navigation-menu-nav-item'>
         <NavigationItem
