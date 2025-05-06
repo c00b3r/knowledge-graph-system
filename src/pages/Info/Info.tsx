@@ -11,17 +11,18 @@ function Info() {
             <Activity/>
             <Flex vertical gap={2}>
                 <Typography.Title level={5} className='container-input-title'>Фамилия, имя и отчество</Typography.Title>
-                <Input placeholder="Мильчаков Владимир Александрович" disabled className='input-disabled'/>
+                <Input defaultValue="Мильчаков Владимир Александрович" disabled className='input-disabled'/>
             </Flex>
             <Flex vertical gap={2}>
                 <Typography.Title level={5} className='container-input-title'>Email</Typography.Title>
-                <Input placeholder="" className='input-enabled'/>
+                <Input defaultValue="example@mail.com" disabled className='input-enabled'/>
             </Flex>
             <Flex vertical gap={2}>
                 <Typography.Title level={5} className='container-input-title'>Телефон</Typography.Title>
-                <Input type='phone' placeholder="" className='input-enabled'/>
+                <Input disabled defaultValue={'+7 (999) 999-99-99'} className='input-enabled'/>
             </Flex>
         </Flex>
+        
     </div>
   )
 }

@@ -50,6 +50,3 @@
     border-radius: 2px;
 }
 
-.ant-input-outlined.ant-input.input-enabled::placeholder{
-    color: rgb(0, 0, 0, 0.85);
-}

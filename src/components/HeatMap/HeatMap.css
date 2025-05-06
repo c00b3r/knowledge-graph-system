@@ -1,0 +1,11 @@
+.w-heatmap-week{
+    font-family: 'Roboto', sans-serif;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    color: #ADAEB0;
+}
+
+.w-heatmap{
+    margin: auto;
+    margin-top: 16px
+}
