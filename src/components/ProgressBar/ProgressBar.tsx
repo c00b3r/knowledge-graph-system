@@ -1,5 +1,5 @@
 import { Flex, Progress, Typography } from 'antd'
-import "./style.css";
+import "./ProgressBar.css";
 
 function ProgressBar() {
   return (

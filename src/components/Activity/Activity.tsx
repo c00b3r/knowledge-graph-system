@@ -1,4 +1,4 @@
-import './style.css';
+import './Activity.css';
 import { Flex, Typography } from 'antd';
 
 function Activity() {

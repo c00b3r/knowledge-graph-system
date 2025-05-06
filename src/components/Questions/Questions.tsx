@@ -3,9 +3,9 @@ import { Input } from "antd";
 import { Button, Dropdown} from 'antd';
 import type { MenuProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import AddIcon from "../icons/AddIcon";
-import HelpIcon from "../icons/HelpIcon";
-import './style.css';
+import AddIcon from "../Icons/AddIcon";
+import HelpIcon from "../Icons/HelpIcon";
+import './Questions.css';
 import Question from "../Question/Question";
 import { NavLink } from "react-router";
 

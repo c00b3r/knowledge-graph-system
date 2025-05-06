@@ -1,7 +1,7 @@
 import { Flex, Input, Typography } from 'antd';
-import Activity from '../../components/Heat-map/Activity';
+import Activity from '../../components/Activity/Activity';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
-import './style.css';
+import './Info.css';
 
 function Info() {
   return (

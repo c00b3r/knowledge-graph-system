@@ -1,7 +1,7 @@
 import { Flex } from "antd";
-import ArrowLeft from "../icons/ArrowLeft";
-import ArrowRight from "../icons/ArrowRight";
-import "./style.css";
+import ArrowLeft from "../Icons/ArrowLeft";
+import ArrowRight from "../Icons/ArrowRight";
+import "./MainHeader.css";
 import { Breadcrumb } from "antd";
 
 function MainHeader() {
