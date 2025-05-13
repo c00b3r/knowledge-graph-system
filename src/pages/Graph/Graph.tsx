@@ -1,4 +1,3 @@
-import { color } from 'bun';
 import { useEffect, useRef } from 'react';
 import { Network } from 'vis-network';
 
@@ -15,7 +14,7 @@ function Graph() {
         font: { size: 20 },
         color: '#4AA1FF',
         borderColor: '#045BFF',
-        borderWidth: '1',
+        borderWidth: 1,
         cursor: 'pointer',
       },
 
@@ -67,19 +66,19 @@ function Graph() {
         color: {
           hover: {
             background: '#4AA1FF',
-            border: 'none'
+            border: 'none',
           },
           background: '#C2C3C5',
           border: 'none',
           highlight: {
             background: '#2C83FF',
-            border: 'none'
+            border: 'none',
           },
-        }
+        },
       },
       edges: {
         width: 2,
-        color: {color: '#A4A5A7', highlight: '#2C83FF', hover: '#68BFF5' },
+        color: { color: '#A4A5A7', highlight: '#2C83FF', hover: '#68BFF5' },
         smooth: { enabled: true, type: 'continuous', roundness: 0.5 },
       },
       interaction: {
