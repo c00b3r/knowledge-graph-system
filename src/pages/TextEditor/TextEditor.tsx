@@ -8,7 +8,7 @@ import { HeadingNode } from '@lexical/rich-text';
 import StrictHeadingPlugin from './text-editor-plugins/StrictHeadingPlugin';
 import InitialStructurePlugin from './text-editor-plugins/InitialStructurePlugin';
 import HandleEnterInHeadingPlugin from './text-editor-plugins/HandleEnterInHeadingPlugin';
-import './style.css';
+import './TextEditor.css';
 
 const theme = {
   heading: {

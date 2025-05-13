@@ -1,9 +1,9 @@
-import TextIcon from '../icons/TextIcon';
-import GraphIcon from '../icons/GraphIcon';
-import ListIcon from '../icons/ListIcon';
-import AchievementsIcon from '../icons/AchievementsIcon';
-import HintIcon from '../icons/HintIcon';
-import LogoutIcon from '../icons/LogoutIcon';
+import TextIcon from '../Icons/TextIcon';
+import GraphIcon from '../Icons/GraphIcon';
+import ListIcon from '../Icons/ListIcon';
+import AchievementsIcon from '../Icons/AchievementsIcon';
+import HintIcon from '../Icons/HintIcon';
+import LogoutIcon from '../Icons/LogoutIcon';
 import './NavigationMenu.css';
 import { NavLink } from 'react-router';
 import { Tooltip } from 'antd';
@@ -48,7 +48,7 @@ function NavigationMenu() {
           icon={<AchievementsIcon />}
           to='/*'
         />
-        <NavigationItem title='Справка' icon={<HintIcon />} to='/*' />
+        <NavigationItem title='Справка' icon={<HintIcon />} to='/info' />
       </nav>
       <div className='navigation-menu-nav-item'>
         <NavigationItem
