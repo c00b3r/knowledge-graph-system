@@ -1,4 +1,4 @@
-import './style.css';
+import './Question.css';
 
 function Question() {
   return (

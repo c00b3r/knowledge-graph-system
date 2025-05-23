@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import Graph from './pages/Graph/Graph';
 import TextEditor from './pages/TextEditor/TextEditor';
 import DefaultLayout from './layout/DefaultLayout';
+import Info from './pages/Info/Info';
 
 const route = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const route = createBrowserRouter([
       {
         path: '/graph',
         element: <Graph />,
+      },
+      {
+        path: '/info',
+        element: <Info />,
       },
     ],
   },

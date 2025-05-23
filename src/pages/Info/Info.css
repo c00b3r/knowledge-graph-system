@@ -1,0 +1,52 @@
+.container {
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-color: #f0f2f5;
+    padding: 0 32px;
+}
+
+.container-content {
+    width: 100%;
+    height: 100%;
+    padding: 32px 0 0 168px;
+}
+
+.ant-progress-text-outer{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: rgb(0, 0, 0, 0.85);
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+}
+
+.ant-typography.container-input-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #838790;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    margin: 0;
+}
+
+.ant-input-outlined.ant-input-disabled.input-disabled {
+    width: 364px;
+    height: 30px;
+    background-color: #FFFFFF;
+    border: 1px #ECECEC solid;
+    border-radius: 2px;
+}
+
+.ant-input-outlined.ant-input-disabled.input-disabled::placeholder{
+    color: #BFBFBF;
+}
+
+.ant-input-outlined.ant-input.input-enabled {
+    width: 364px;
+    height: 30px;
+    background-color: #FFFFFF;
+    border: 1px #ECECEC solid;
+    border-radius: 2px;
+}
+

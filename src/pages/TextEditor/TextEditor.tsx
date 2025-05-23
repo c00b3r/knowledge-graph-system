@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorThemeClasses } from 'lexical';
 
+
 const theme: EditorThemeClasses = {
   heading: {
     h1: 'editor-heading-h1',
