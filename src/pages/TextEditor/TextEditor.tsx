@@ -7,12 +7,11 @@ import { HeadingNode } from '@lexical/rich-text';
 import StrictHeadingPlugin from './text-editor-plugins/StrictHeadingPlugin';
 import InitialStructurePlugin from './text-editor-plugins/InitialStructurePlugin';
 import HandleEnterInHeadingPlugin from './text-editor-plugins/HandleEnterInHeadingPlugin';
-import './style.css';
+import './TextEditor.css';
 import FloatingTextFormatToolbarPlugin from './text-editor-plugins/FloatingTextFormater/FloatingTextFormater';
 import { useState } from 'react';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorThemeClasses } from 'lexical';
-
 
 const theme: EditorThemeClasses = {
   heading: {
