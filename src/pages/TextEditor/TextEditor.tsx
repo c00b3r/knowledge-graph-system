@@ -1,5 +1,4 @@
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
@@ -9,12 +8,28 @@ import StrictHeadingPlugin from './text-editor-plugins/StrictHeadingPlugin';
 import InitialStructurePlugin from './text-editor-plugins/InitialStructurePlugin';
 import HandleEnterInHeadingPlugin from './text-editor-plugins/HandleEnterInHeadingPlugin';
 import './style.css';
+import FloatingTextFormatToolbarPlugin from './text-editor-plugins/FloatingTextFormater/FloatingTextFormater';
+import { useState } from 'react';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
+import { EditorThemeClasses } from 'lexical';
 
-const theme = {
+const theme: EditorThemeClasses = {
   heading: {
     h1: 'editor-heading-h1',
   },
   paragraph: 'editor-paragraph',
+  text: {
+    bold: 'editor-text-bold',
+    italic: 'editor-text-italic',
+    underline: 'editor-text-underline',
+    strikethrough: 'editor-text-strikethrough',
+    subscript: 'editor-text-subscript',
+    superscript: 'editor-text-superscript',
+    code: 'editor-text-code',
+    uppercase: 'editor-text-uppercase',
+    lowercase: 'editor-text-lowercase',
+    capitalize: 'editor-text-capitalize',
+  },
 };
 
 const initialConfig = {
@@ -23,17 +38,48 @@ const initialConfig = {
   nodes: [HeadingNode],
   onError: (error: Error) => console.error(error),
   editorState: null,
+  formatters: [
+    'bold',
+    'italic',
+    'underline',
+    'strikethrough',
+    'subscript',
+    'superscript',
+    'code',
+    'uppercase',
+    'lowercase',
+    'capitalize',
+  ],
 };
 
 function TextEditor() {
+  const [floatingAnchorElem, setFloatingAnchorElem] =
+    useState<HTMLDivElement | null>(null);
+
+  const onRef = (_floatingAnchorElem: HTMLDivElement) => {
+    if (_floatingAnchorElem !== null) {
+      setFloatingAnchorElem(_floatingAnchorElem);
+    }
+  };
+
   return (
     <div className='text-editor-container'>
       <LexicalComposer initialConfig={initialConfig}>
         <InitialStructurePlugin />
         <HandleEnterInHeadingPlugin />
-        <PlainTextPlugin
+        {floatingAnchorElem && (
+          <>
+            <FloatingTextFormatToolbarPlugin
+              anchorElem={floatingAnchorElem}
+              setIsLinkEditMode={() => {}}
+            />
+          </>
+        )}
+        <RichTextPlugin
           contentEditable={
-            <ContentEditable className='text-editor-content-editable' />
+            <div className='editor' ref={onRef}>
+              <ContentEditable className='text-editor-content-editable' />
+            </div>
           }
           placeholder={null}
           ErrorBoundary={LexicalErrorBoundary}
@@ -41,6 +87,13 @@ function TextEditor() {
         <HistoryPlugin />
         <OnChangePlugin onChange={(editorState) => console.log(editorState)} />
         <StrictHeadingPlugin />
+        {/* <RichTextPlugin
+          contentEditable={
+            <ContentEditable className='text-editor-content-editable' />
+          }
+          placeholder={null}
+          ErrorBoundary={LexicalErrorBoundary}
+        /> */}
       </LexicalComposer>
     </div>
   );

@@ -65,7 +65,7 @@
   background: #f0f2f5;
   width: 100%;
   height: calc(100vh - 56px);
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .text-editor-content-editable {
@@ -103,4 +103,49 @@
   line-height: 20px;
   letter-spacing: 0;
   vertical-align: middle;
+}
+
+.editor-text-bold {
+  font-weight: bold;
+}
+
+.editor-text-italic {
+  font-style: italic;
+}
+
+.editor-text-underline {
+  text-decoration: underline;
+}
+
+.editor-text-strikethrough {
+  text-decoration: line-through;
+}
+
+.editor-text-subscript {
+  vertical-align: sub;
+  font-size: 0.8em;
+}
+
+.editor-text-superscript {
+  vertical-align: super;
+  font-size: 0.8em;
+}
+
+.editor-text-code {
+  background-color: rgb(240, 242, 245);
+  padding: 1px 0.25rem;
+  font-family: Menlo, Consolas, Monaco, monospace;
+  font-size: 94%;
+}
+
+.editor-text-uppercase {
+  text-transform: uppercase;
+}
+
+.editor-text-lowercase {
+  text-transform: lowercase;
+}
+
+.editor-text-capitalize {
+  text-transform: capitalize;
 }
