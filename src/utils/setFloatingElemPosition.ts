@@ -1,5 +1,5 @@
 const VERTICAL_GAP = 100;
-const HORIZONTAL_OFFSET = 5;
+const HORIZONTAL_OFFSET = -140;
 
 export function setFloatingElemPosition(
   targetRect: DOMRect | null,
@@ -45,7 +45,7 @@ export function setFloatingElemPosition(
     top +=
       floatingElemRect.height +
       targetRect.height +
-      verticalGap * (isLink ? 0 : 0.97);
+      verticalGap * (isLink ? 0 : 1.8);
   }
 
   if (left + floatingElemRect.width > editorScrollerRect.right) {

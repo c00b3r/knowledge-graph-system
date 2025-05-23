@@ -4,14 +4,13 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { HeadingNode } from '@lexical/rich-text';
-import StrictHeadingPlugin from './text-editor-plugins/StrictHeadingPlugin';
 import InitialStructurePlugin from './text-editor-plugins/InitialStructurePlugin';
-import HandleEnterInHeadingPlugin from './text-editor-plugins/HandleEnterInHeadingPlugin';
 import './TextEditor.css';
 import FloatingTextFormatToolbarPlugin from './text-editor-plugins/FloatingTextFormater/FloatingTextFormater';
 import { useState } from 'react';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorThemeClasses } from 'lexical';
+import HeadingInput from './ui/HeadingInput';
 
 const theme: EditorThemeClasses = {
   heading: {
@@ -65,8 +64,9 @@ function TextEditor() {
   return (
     <div className='text-editor-container'>
       <LexicalComposer initialConfig={initialConfig}>
+        <HeadingInput />
         <InitialStructurePlugin />
-        <HandleEnterInHeadingPlugin />
+        {/* <HandleEnterInHeadingPlugin /> */}
         {floatingAnchorElem && (
           <>
             <FloatingTextFormatToolbarPlugin
@@ -86,7 +86,7 @@ function TextEditor() {
         />
         <HistoryPlugin />
         <OnChangePlugin onChange={(editorState) => console.log(editorState)} />
-        <StrictHeadingPlugin />
+        {/* <StrictHeadingPlugin /> */}
         {/* <RichTextPlugin
           contentEditable={
             <ContentEditable className='text-editor-content-editable' />

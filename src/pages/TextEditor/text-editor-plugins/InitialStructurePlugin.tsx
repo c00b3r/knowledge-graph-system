@@ -1,5 +1,4 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { $createHeadingNode } from '@lexical/rich-text';
 import {
   $getRoot,
   $isElementNode,
@@ -26,22 +25,11 @@ function InitialStructurePlugin() {
           return $isTextNode(child) && child.getTextContent().trim().length > 0;
         });
 
-      const hasHeading = children.some(
-        (child) => child.getType() === 'heading'
-      );
-
-      if (!hasContent && !hasHeading) {
-        const heading = $createHeadingNode('h1');
-        heading.append($createTextNode('Без названия'));
-
+      if (!hasContent) {
         const paragraph = $createParagraphNode();
         paragraph.append($createTextNode('Начните писать здесь...'));
 
-        root.append(heading, paragraph);
-      } else if (!hasHeading) {
-        const heading = $createHeadingNode('h1');
-        heading.append($createTextNode('Мой заголовок'));
-        root.insertBefore(heading);
+        root.append(paragraph);
       }
     });
   }, [editor]);
