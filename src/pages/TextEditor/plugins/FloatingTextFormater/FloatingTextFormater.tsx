@@ -1,7 +1,6 @@
 import type { JSX } from 'react';
 
-import './index.css';
-
+import './FloatingTextFormater.css';
 import { $isCodeHighlightNode } from '@lexical/code';
 import { $isLinkNode } from '@lexical/link';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -35,7 +34,7 @@ import LowercaseIcon from '../../../../components/icons/TextEditor/LowercaseIcon
 function TextFormatFloatingToolbar({
   editor,
   anchorElem,
-  isLink,
+  // isLink,
   isBold,
   isItalic,
   isUnderline,
@@ -130,14 +129,9 @@ function TextFormatFloatingToolbar({
     ) {
       const rangeRect = getDOMRangeRect(nativeSelection, rootElement);
 
-      setFloatingElemPosition(
-        rangeRect,
-        popupCharStylesEditorElem,
-        anchorElem,
-        isLink
-      );
+      setFloatingElemPosition(rangeRect, popupCharStylesEditorElem, anchorElem);
     }
-  }, [editor, anchorElem, isLink]);
+  }, [editor, anchorElem]);
 
   useEffect(() => {
     const scrollerElem = anchorElem.parentElement;

@@ -18,12 +18,12 @@ function UnderlineIcon() {
         width={24}
         height={24}
       >
-        <path fill='#D9D9D9' d='M0 0h24v24H0z' />
+        <path fill='currentColor' d='M0 0h24v24H0z' />
       </mask>
       <g mask='url(#a)'>
         <path
           d='M5 21v-2h14v2zm7-4q-2.525 0-3.925-1.575t-1.4-4.175V3H9.25v8.4q0 1.4.7 2.275t2.05.875 2.05-.875.7-2.275V3h2.575v8.25q0 2.6-1.4 4.175T12 17'
-          fill='#838790'
+          fill='currentColor'
         />
       </g>
     </svg>

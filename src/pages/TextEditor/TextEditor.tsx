@@ -4,13 +4,14 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { HeadingNode } from '@lexical/rich-text';
-import InitialStructurePlugin from './text-editor-plugins/InitialStructurePlugin';
+import InitialStructurePlugin from './plugins/InitialStructurePlugin';
 import './TextEditor.css';
-import FloatingTextFormatToolbarPlugin from './text-editor-plugins/FloatingTextFormater/FloatingTextFormater';
-import { useState } from 'react';
+import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormater/FloatingTextFormater';
+import { useEffect, useRef, useState } from 'react';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorThemeClasses } from 'lexical';
 import HeadingInput from './ui/HeadingInput';
+import ContextMenu from './plugins/ContextMenu/ContextMenu';
 
 const theme: EditorThemeClasses = {
   heading: {
@@ -54,6 +55,12 @@ const initialConfig = {
 function TextEditor() {
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null);
+  const [contextMenu, setContextMenu] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
+  const contextMenuRef = useRef<HTMLDivElement>(null);
 
   const onRef = (_floatingAnchorElem: HTMLDivElement) => {
     if (_floatingAnchorElem !== null) {
@@ -61,12 +68,64 @@ function TextEditor() {
     }
   };
 
+  const handleContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setContextMenu({ x: event.pageX, y: event.pageY });
+    setContextMenuVisible(true);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (
+      contextMenuRef.current &&
+      contextMenuRef.current.contains(event.target as Node)
+    ) {
+      return;
+    }
+    setContextMenuVisible(false);
+  };
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      const editor = document.querySelector('.editor');
+      const contextMenu = contextMenuRef.current;
+      if (
+        editor &&
+        !editor.contains(event.target as Node) &&
+        contextMenu &&
+        !contextMenu.contains(event.target as Node)
+      ) {
+        setContextMenuVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
   return (
     <div className='text-editor-container'>
       <LexicalComposer initialConfig={initialConfig}>
+        {contextMenuVisible && (
+          <ContextMenu contextMenu={contextMenu} ref={contextMenuRef} />
+        )}
         <HeadingInput />
         <InitialStructurePlugin />
         {/* <HandleEnterInHeadingPlugin /> */}
+
+        <RichTextPlugin
+          contentEditable={
+            <div
+              className='editor'
+              ref={onRef}
+              onClick={handleClick}
+              onContextMenu={handleContextMenu}
+            >
+              <ContentEditable className='text-editor-content-editable' />
+            </div>
+          }
+          placeholder={null}
+          ErrorBoundary={LexicalErrorBoundary}
+        />
         {floatingAnchorElem && (
           <>
             <FloatingTextFormatToolbarPlugin
@@ -75,15 +134,6 @@ function TextEditor() {
             />
           </>
         )}
-        <RichTextPlugin
-          contentEditable={
-            <div className='editor' ref={onRef}>
-              <ContentEditable className='text-editor-content-editable' />
-            </div>
-          }
-          placeholder={null}
-          ErrorBoundary={LexicalErrorBoundary}
-        />
         <HistoryPlugin />
         <OnChangePlugin onChange={(editorState) => console.log(editorState)} />
         {/* <StrictHeadingPlugin /> */}
