@@ -1,0 +1,42 @@
+.context-menu {
+  background-color: #fff;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid #cccfd7;
+  border-radius: 8px;
+}
+
+.context-menu-item {
+  font-size: 14px;
+  line-height: 120%;
+  padding: 4px 8px;
+  min-width: 220px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 4px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.context-menu-item:hover {
+  background-color: #f0f2f5;
+}
+
+.context-menu-item-icon {
+  width: 24px;
+  height: 24px;
+  color: #838790;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.context-menu-divider {
+  height: 1px;
+  width: full;
+  background-color: #cccfd7;
+}

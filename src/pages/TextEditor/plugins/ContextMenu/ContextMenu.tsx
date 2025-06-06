@@ -1,4 +1,13 @@
 import { useEffect, useState } from 'react';
+import './ContextMenu.css';
+import LinkIcon from '../../../../components/icons/TextEditor/LinkIcon';
+import ParagraphIcon from '../../../../components/icons/TextEditor/ParagraphIcon';
+import PasteElementIcon from '../../../../components/icons/TextEditor/PasteElementIcon';
+import CutIcon from '../../../../components/icons/TextEditor/CutIcon';
+import CopyIcon from '../../../../components/icons/TextEditor/CopyIcon';
+import PasteIcon from '../../../../components/icons/TextEditor/PasteIcon';
+import SelectIcon from '../../../../components/icons/TextEditor/SelectIcon';
+import ArrowRight from '../../../../components/icons/ArrowRight';
 
 export default function ContextMenu({
   contextMenu,
@@ -28,14 +37,73 @@ export default function ContextMenu({
         left: contextMenu?.x,
         top: positionY,
         position: 'fixed',
-        width: '100px',
-        height: '100px',
-        backgroundColor: 'red',
-        zIndex: 1000,
       }}
       ref={ref}
     >
-      <div className='context-menu-item'>GGGggg</div>
+      <div className='context-menu-item'>
+        <span className='context-menu-item-icon'>
+          <LinkIcon />
+        </span>
+        Вставить ссылку
+      </div>
+      <div className='context-menu-divider' />
+      <div
+        className='context-menu-item'
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <span className='context-menu-item-icon'>
+          <ParagraphIcon />
+        </span>
+        <span style={{ flex: 1 }}>Абзац</span>
+        <span className='context-menu-item-icon'>
+          <ArrowRight />
+        </span>
+      </div>
+      <div
+        className='context-menu-item'
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <span className='context-menu-item-icon'>
+          <PasteElementIcon />
+        </span>
+        <span style={{ flex: 1 }}>Вставка</span>
+        <span className='context-menu-item-icon'>
+          <ArrowRight />
+        </span>
+      </div>
+      <div className='context-menu-divider' />
+      <div className='context-menu-item'>
+        <span className='context-menu-item-icon'>
+          <CutIcon />
+        </span>
+        Вырезать
+      </div>
+      <div className='context-menu-item'>
+        <span className='context-menu-item-icon'>
+          <CopyIcon />
+        </span>
+        Копировать
+      </div>
+      <div className='context-menu-item'>
+        <span className='context-menu-item-icon'>
+          <PasteIcon />
+        </span>
+        Вставить
+      </div>
+      <div className='context-menu-item'>
+        <span className='context-menu-item-icon'>
+          <SelectIcon />
+        </span>
+        Выделить В С Ё
+      </div>
     </div>
   );
 }

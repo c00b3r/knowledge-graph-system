@@ -7,9 +7,13 @@ import { Breadcrumb } from 'antd';
 function MainHeader() {
   return (
     <div className='wrapper'>
-      <Flex gap={24.6} align='center' className='arrows-wrapper'>
-        <ArrowLeft />
-        <ArrowRight />
+      <Flex gap={8} align='center' className='arrows-wrapper'>
+        <span className='arrows-wrapper-icon'>
+          <ArrowLeft />
+        </span>
+        <span className='arrows-wrapper-icon'>
+          <ArrowRight />
+        </span>
       </Flex>
       <Breadcrumb
         className='breadcrumb'

@@ -1,4 +1,4 @@
-function ArrowLeft() {
+function PasteElementIcon() {
   return (
     <svg
       viewBox='0 0 24 24'
@@ -19,10 +19,13 @@ function ArrowLeft() {
         <path fill='#D9D9D9' d='M0 0h24v24H0z' />
       </mask>
       <g mask='url(#a)'>
-        <path d='m14 18-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6z' fill='#838790' />
+        <path
+          d='M3 16v-2h7v2zm0-4v-2h11v2zm0-4V6h11v2zm13 12v-4h-4v-2h4v-4h2v4h4v2h-4v4z'
+          fill='#838790'
+        />
       </g>
     </svg>
   );
 }
 
-export default ArrowLeft;
+export default PasteElementIcon;

@@ -5,6 +5,7 @@ import Graph from './pages/Graph/Graph';
 import TextEditor from './pages/TextEditor/TextEditor';
 import DefaultLayout from './layout/DefaultLayout';
 import Info from './pages/Info/Info';
+import NotFound from './pages/NotFound';
 
 const route = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const route = createBrowserRouter([
       {
         path: '/info',
         element: <Info />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
