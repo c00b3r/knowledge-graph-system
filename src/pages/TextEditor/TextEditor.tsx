@@ -3,6 +3,8 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { HeadingNode } from '@lexical/rich-text';
+import { LinkNode } from '@lexical/link';
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import InitialStructurePlugin from './plugins/InitialStructurePlugin';
 import './TextEditor.css';
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormater/FloatingTextFormater';
@@ -11,6 +13,7 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorThemeClasses } from 'lexical';
 import HeadingInput from './ui/HeadingInput';
 import ContextMenu from './plugins/ContextMenu/ContextMenu';
+import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin/FloatingLinkEditorPlugin';
 
 const theme: EditorThemeClasses = {
   heading: {
@@ -29,12 +32,13 @@ const theme: EditorThemeClasses = {
     lowercase: 'editor-text-lowercase',
     capitalize: 'editor-text-capitalize',
   },
+  link: 'editor-link',
 };
 
 const initialConfig = {
   namespace: 'MyEditor',
   theme,
-  nodes: [HeadingNode],
+  nodes: [HeadingNode, LinkNode],
   onError: (error: Error) => console.error(error),
   editorState: null,
   formatters: [
@@ -60,6 +64,7 @@ function TextEditor() {
   } | null>(null);
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const contextMenuRef = useRef<HTMLDivElement>(null);
+  const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
 
   const onRef = (_floatingAnchorElem: HTMLDivElement) => {
     if (_floatingAnchorElem !== null) {
@@ -104,12 +109,6 @@ function TextEditor() {
   return (
     <div className='text-editor-container'>
       <LexicalComposer initialConfig={initialConfig}>
-        {contextMenuVisible && (
-          <ContextMenu
-            contextMenu={contextMenu}
-            contextMenuRef={contextMenuRef}
-          />
-        )}
         <HeadingInput />
         <InitialStructurePlugin />
         <RichTextPlugin
@@ -126,6 +125,7 @@ function TextEditor() {
           placeholder={null}
           ErrorBoundary={LexicalErrorBoundary}
         />
+        <LinkPlugin />
         {floatingAnchorElem && (
           <>
             <FloatingTextFormatToolbarPlugin
@@ -133,6 +133,20 @@ function TextEditor() {
               setIsLinkEditMode={() => {}}
             />
           </>
+        )}
+        {floatingAnchorElem && (
+          <FloatingLinkEditorPlugin
+            anchorElem={floatingAnchorElem}
+            isLinkEditMode={isLinkEditMode}
+            setIsLinkEditMode={setIsLinkEditMode}
+          />
+        )}
+        {contextMenuVisible && (
+          <ContextMenu
+            contextMenu={contextMenu}
+            contextMenuRef={contextMenuRef}
+            setIsLinkEditMode={setIsLinkEditMode}
+          />
         )}
         <HistoryPlugin />
         {/* <OnChangePlugin onChange={(editorState) => console.log(editorState)} /> */}

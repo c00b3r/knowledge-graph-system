@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './ContextMenu.css';
 import LinkIcon from '../../../../components/icons/TextEditor/LinkIcon';
 import ParagraphIcon from '../../../../components/icons/TextEditor/ParagraphIcon';
@@ -10,21 +10,41 @@ import SelectIcon from '../../../../components/icons/TextEditor/SelectIcon';
 import ArrowRight from '../../../../components/icons/ArrowRight';
 import { $getSelection, $isRangeSelection } from 'lexical';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { getSelectedNode } from '../../../../utils/getSelectedNode';
+import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 
 export default function ContextMenu({
   contextMenu,
   contextMenuRef,
+  setIsLinkEditMode,
 }: {
   contextMenu: { x: number; y: number } | null;
   contextMenuRef: React.RefObject<HTMLDivElement | null>;
+  setIsLinkEditMode: (isLinkEditMode: boolean) => void;
 }) {
   const [positionY, setPositionY] = useState(contextMenu?.y);
   const [editor] = useLexicalComposerContext();
   const [isSelectedText, setIsSelectedText] = useState(false);
+  const [isLink, setIsLink] = useState(false);
+
+  const insertLink = useCallback(() => {
+    if (!isLink) {
+      setIsLinkEditMode(true);
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://');
+    } else {
+      setIsLinkEditMode(false);
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+    }
+  }, [editor, isLink, setIsLinkEditMode]);
 
   useEffect(() => {
     editor.getEditorState().read(() => {
       const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        const node = getSelectedNode(selection);
+        const parent = node.getParent();
+        setIsLink($isLinkNode(parent) || $isLinkNode(node));
+      }
       if ($isRangeSelection(selection)) {
         const rawTextContent = selection.getTextContent().replace(/\n/g, '');
         setIsSelectedText(rawTextContent.length > 0);
@@ -60,7 +80,11 @@ export default function ContextMenu({
       }}
       ref={contextMenuRef}
     >
-      <button className='context-menu-item' disabled={!isSelectedText}>
+      <button
+        className='context-menu-item'
+        disabled={!isSelectedText}
+        onClick={insertLink}
+      >
         <span className='context-menu-item-icon'>
           <LinkIcon />
         </span>
