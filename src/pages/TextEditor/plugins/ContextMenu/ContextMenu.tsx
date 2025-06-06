@@ -8,27 +8,47 @@ import CopyIcon from '../../../../components/icons/TextEditor/CopyIcon';
 import PasteIcon from '../../../../components/icons/TextEditor/PasteIcon';
 import SelectIcon from '../../../../components/icons/TextEditor/SelectIcon';
 import ArrowRight from '../../../../components/icons/ArrowRight';
+import { $getSelection, $isRangeSelection } from 'lexical';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
 export default function ContextMenu({
   contextMenu,
-  ref,
+  contextMenuRef,
 }: {
   contextMenu: { x: number; y: number } | null;
-  ref: React.RefObject<HTMLDivElement | null>;
+  contextMenuRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const [positionY, setPositionY] = useState(contextMenu?.y);
+  const [editor] = useLexicalComposerContext();
+  const [isSelectedText, setIsSelectedText] = useState(false);
 
   useEffect(() => {
-    if (!contextMenu || !positionY || !ref.current?.parentElement?.clientHeight)
-      return;
-    console.log(ref.current?.parentElement?.clientHeight, contextMenu.y);
+    editor.getEditorState().read(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        const rawTextContent = selection.getTextContent().replace(/\n/g, '');
+        setIsSelectedText(rawTextContent.length > 0);
+      }
+    });
+  }, [editor]);
 
-    if (contextMenu.y + 55 > ref.current?.parentElement?.clientHeight) {
-      setPositionY(contextMenu.y - 100);
+  useEffect(() => {
+    if (
+      !contextMenu ||
+      !positionY ||
+      !contextMenuRef.current?.parentElement?.clientHeight
+    )
+      return;
+
+    if (
+      contextMenu.y + 200 >
+      contextMenuRef.current?.parentElement?.clientHeight
+    ) {
+      setPositionY(contextMenu.y - 240);
     } else {
       setPositionY(contextMenu.y + 12);
     }
-  }, [contextMenu, contextMenu?.y, positionY, ref]);
+  }, [contextMenu, contextMenu?.y, positionY, contextMenuRef]);
 
   return (
     <div
@@ -38,72 +58,58 @@ export default function ContextMenu({
         top: positionY,
         position: 'fixed',
       }}
-      ref={ref}
+      ref={contextMenuRef}
     >
-      <div className='context-menu-item'>
+      <button className='context-menu-item' disabled={!isSelectedText}>
         <span className='context-menu-item-icon'>
           <LinkIcon />
         </span>
         Вставить ссылку
-      </div>
+      </button>
       <div className='context-menu-divider' />
-      <div
-        className='context-menu-item'
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      <button className='context-menu-item'>
         <span className='context-menu-item-icon'>
           <ParagraphIcon />
         </span>
-        <span style={{ flex: 1 }}>Абзац</span>
+        <span style={{ flex: 1, textAlign: 'left' }}>Абзац</span>
         <span className='context-menu-item-icon'>
           <ArrowRight />
         </span>
-      </div>
-      <div
-        className='context-menu-item'
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      </button>
+      <button className='context-menu-item'>
         <span className='context-menu-item-icon'>
           <PasteElementIcon />
         </span>
-        <span style={{ flex: 1 }}>Вставка</span>
+        <span style={{ flex: 1, textAlign: 'left' }}>Вставка</span>
         <span className='context-menu-item-icon'>
           <ArrowRight />
         </span>
-      </div>
+      </button>
       <div className='context-menu-divider' />
-      <div className='context-menu-item'>
+      <button className='context-menu-item' disabled={!isSelectedText}>
         <span className='context-menu-item-icon'>
           <CutIcon />
         </span>
         Вырезать
-      </div>
-      <div className='context-menu-item'>
+      </button>
+      <button className='context-menu-item' disabled={!isSelectedText}>
         <span className='context-menu-item-icon'>
           <CopyIcon />
         </span>
         Копировать
-      </div>
-      <div className='context-menu-item'>
+      </button>
+      <button className='context-menu-item'>
         <span className='context-menu-item-icon'>
           <PasteIcon />
         </span>
         Вставить
-      </div>
-      <div className='context-menu-item'>
+      </button>
+      <button className='context-menu-item'>
         <span className='context-menu-item-icon'>
           <SelectIcon />
         </span>
         Выделить В С Ё
-      </div>
+      </button>
     </div>
   );
 }

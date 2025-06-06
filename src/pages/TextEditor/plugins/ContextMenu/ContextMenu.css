@@ -19,10 +19,18 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
 
 .context-menu-item:hover {
   background-color: #f0f2f5;
+}
+.context-menu-item:disabled {
+  opacity: 0.5;
+  cursor: default;
+  background-color: transparent;
 }
 
 .context-menu-item-icon {
@@ -33,6 +41,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  align-self: flex-end;
 }
 
 .context-menu-divider {
