@@ -8,7 +8,12 @@ import CopyIcon from '../../../../components/icons/TextEditor/CopyIcon';
 import PasteIcon from '../../../../components/icons/TextEditor/PasteIcon';
 import SelectIcon from '../../../../components/icons/TextEditor/SelectIcon';
 import ArrowRight from '../../../../components/icons/ArrowRight';
-import { $getSelection, $isRangeSelection, CUT_COMMAND } from 'lexical';
+import {
+  $getSelection,
+  $isRangeSelection,
+  COPY_COMMAND,
+  CUT_COMMAND,
+} from 'lexical';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { getSelectedNode } from '../../../../utils/getSelectedNode';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
@@ -125,13 +130,38 @@ export default function ContextMenu({
         </span>
         Вырезать
       </button>
-      <button className='context-menu-item' disabled={!isSelectedText}>
+      <button
+        className='context-menu-item'
+        disabled={!isSelectedText}
+        onClick={() => {
+          editor.dispatchCommand(COPY_COMMAND, null);
+          setContextMenuVisible(false);
+        }}
+      >
         <span className='context-menu-item-icon'>
           <CopyIcon />
         </span>
         Копировать
       </button>
-      <button className='context-menu-item'>
+      <button
+        className='context-menu-item'
+        onClick={async () => {
+          try {
+            const text = await navigator.clipboard.readText();
+
+            editor.update(() => {
+              const selection = $getSelection();
+              if ($isRangeSelection(selection)) {
+                selection.insertText(text);
+              }
+            });
+
+            setContextMenuVisible(false);
+          } catch (error) {
+            console.error('Ошибка вставки :(', error);
+          }
+        }}
+      >
         <span className='context-menu-item-icon'>
           <PasteIcon />
         </span>
