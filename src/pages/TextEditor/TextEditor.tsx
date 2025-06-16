@@ -146,6 +146,7 @@ function TextEditor() {
             contextMenu={contextMenu}
             contextMenuRef={contextMenuRef}
             setIsLinkEditMode={setIsLinkEditMode}
+            setContextMenuVisible={setContextMenuVisible}
           />
         )}
         <HistoryPlugin />

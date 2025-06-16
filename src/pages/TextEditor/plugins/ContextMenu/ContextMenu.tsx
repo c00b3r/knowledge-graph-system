@@ -8,7 +8,7 @@ import CopyIcon from '../../../../components/icons/TextEditor/CopyIcon';
 import PasteIcon from '../../../../components/icons/TextEditor/PasteIcon';
 import SelectIcon from '../../../../components/icons/TextEditor/SelectIcon';
 import ArrowRight from '../../../../components/icons/ArrowRight';
-import { $getSelection, $isRangeSelection } from 'lexical';
+import { $getSelection, $isRangeSelection, CUT_COMMAND } from 'lexical';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { getSelectedNode } from '../../../../utils/getSelectedNode';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
@@ -17,10 +17,12 @@ export default function ContextMenu({
   contextMenu,
   contextMenuRef,
   setIsLinkEditMode,
+  setContextMenuVisible,
 }: {
   contextMenu: { x: number; y: number } | null;
   contextMenuRef: React.RefObject<HTMLDivElement | null>;
   setIsLinkEditMode: (isLinkEditMode: boolean) => void;
+  setContextMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [positionY, setPositionY] = useState(contextMenu?.y);
   const [editor] = useLexicalComposerContext();
@@ -110,7 +112,14 @@ export default function ContextMenu({
         </span>
       </button>
       <div className='context-menu-divider' />
-      <button className='context-menu-item' disabled={!isSelectedText}>
+      <button
+        className='context-menu-item'
+        disabled={!isSelectedText}
+        onClick={() => {
+          editor.dispatchCommand(CUT_COMMAND, null);
+          setContextMenuVisible(false);
+        }}
+      >
         <span className='context-menu-item-icon'>
           <CutIcon />
         </span>
