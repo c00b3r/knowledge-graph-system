@@ -13,6 +13,7 @@ import {
   $isRangeSelection,
   COPY_COMMAND,
   CUT_COMMAND,
+  SELECT_ALL_COMMAND,
 } from 'lexical';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { getSelectedNode } from '../../../../utils/getSelectedNode';
@@ -167,7 +168,17 @@ export default function ContextMenu({
         </span>
         Вставить
       </button>
-      <button className='context-menu-item'>
+      <button
+        className='context-menu-item'
+        onClick={() => {
+          const fakeEvent = new KeyboardEvent('keydown', {
+            key: 'a',
+            ctrlKey: true,
+          });
+          editor.dispatchCommand(SELECT_ALL_COMMAND, fakeEvent);
+          setContextMenuVisible(false);
+        }}
+      >
         <span className='context-menu-item-icon'>
           <SelectIcon />
         </span>
