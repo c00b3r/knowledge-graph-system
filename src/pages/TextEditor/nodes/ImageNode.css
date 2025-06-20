@@ -1,0 +1,238 @@
+.ImageNode__contentEditable {
+  min-height: 20px;
+  border: 0px;
+  resize: none;
+  cursor: text;
+  caret-color: rgb(5, 5, 5);
+  display: block;
+  position: relative;
+  outline: 0px;
+  padding: 10px;
+  user-select: text;
+  font-size: 12px;
+  width: calc(100% - 20px);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ImageNode__placeholder {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 10px;
+  left: 10px;
+  user-select: none;
+  white-space: nowrap;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.image-control-wrapper--resizing {
+  touch-action: none;
+}
+
+/* Image Node Container */
+.editor-image {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  margin: 8px 0;
+}
+
+/* Image element styles */
+.editor-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.editor-image img:hover {
+  opacity: 0.95;
+}
+
+/* Focused state */
+.editor-image.focused {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+.editor-image.focused.draggable {
+  cursor: move;
+}
+
+.editor-image.focused.draggable img {
+  cursor: move;
+}
+
+/* Dragging state */
+.editor-image.dragging {
+  opacity: 0.7;
+  transform: rotate(5deg);
+  transition: all 0.2s ease;
+}
+
+/* Image wrapper for resizing */
+.editor-image .image-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Loading state */
+.editor-image .image-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 150px;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Error state */
+.editor-image .image-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 150px;
+  background: #f8f9fa;
+  border: 2px dashed #dc3545;
+  border-radius: 8px;
+  color: #dc3545;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Selection indicator */
+.editor-image.selected {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .editor-image {
+    margin: 12px 0;
+  }
+
+  .editor-image img {
+    border-radius: 6px;
+  }
+
+  .editor-image .image-caption {
+    font-size: 16px;
+    margin-top: 12px;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .editor-image.focused {
+    outline-color: #4299e1;
+    box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.1);
+  }
+
+  .editor-image .image-caption {
+    color: #a0aec0;
+  }
+
+  .editor-image .image-caption:empty::before {
+    color: #718096;
+  }
+
+  .editor-image .image-loading,
+  .editor-image .image-error {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #a0aec0;
+  }
+
+  .editor-image .image-error {
+    border-color: #e53e3e;
+    color: #e53e3e;
+  }
+
+  .editor-image.selected {
+    outline-color: #4299e1;
+  }
+}
+
+/* Animation for image loading */
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.editor-image img {
+  animation: imageFadeIn 0.3s ease-out;
+}
+
+/* Hover effects for interactive elements */
+.editor-image:hover .image-controls {
+  opacity: 1;
+}
+
+.editor-image .image-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 5;
+}
+
+.editor-image .image-controls button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: 4px;
+  font-size: 12px;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editor-image .image-controls button:hover {
+  background: #ffffff;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+/* Dark theme for controls */
+@media (prefers-color-scheme: dark) {
+  .editor-image .image-controls button {
+    background: rgba(45, 55, 72, 0.9);
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+
+  .editor-image .image-controls button:hover {
+    background: #4a5568;
+    border-color: #4299e1;
+    color: #4299e1;
+  }
+}

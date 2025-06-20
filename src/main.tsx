@@ -1,37 +1,40 @@
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router';
-import Graph from './pages/Graph/Graph';
-import TextEditor from './pages/TextEditor/TextEditor';
-import DefaultLayout from './layout/DefaultLayout';
-import Info from './pages/Info/Info';
-import NotFound from './pages/NotFound';
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Graph from "./pages/Graph/Graph";
+import TextEditor from "./pages/TextEditor/TextEditor";
+import DefaultLayout from "./layout/DefaultLayout";
+import Info from "./pages/Info/Info";
+import NotFound from "./pages/NotFound";
+import { SharedHistoryContext } from "./context/SharedHistoryContext";
 
 const route = createBrowserRouter([
   {
-    path: '',
+    path: "",
     element: <DefaultLayout />,
     children: [
       {
-        path: '/editor',
+        path: "/editor",
         element: <TextEditor />,
       },
       {
-        path: '/graph',
+        path: "/graph",
         element: <Graph />,
       },
       {
-        path: '/info',
+        path: "/info",
         element: <Info />,
       },
       {
-        path: '*',
+        path: "*",
         element: <NotFound />,
       },
     ],
   },
 ]);
 
-createRoot(document.getElementById('root')!).render(
-  <RouterProvider router={route} />
+createRoot(document.getElementById("root")!).render(
+  <SharedHistoryContext>
+    <RouterProvider router={route} />
+  </SharedHistoryContext>
 );

@@ -1,0 +1,151 @@
+.image-resizer {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.image-resizer:hover {
+  background: #007bff;
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.image-resizer:active {
+  background: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Position the resizer handles */
+.image-resizer-n {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: n-resize;
+}
+
+.image-resizer-ne {
+  top: -4px;
+  right: -4px;
+  cursor: ne-resize;
+}
+
+.image-resizer-e {
+  top: 50%;
+  right: -4px;
+  transform: translateY(-50%);
+  cursor: e-resize;
+}
+
+.image-resizer-se {
+  bottom: -4px;
+  right: -4px;
+  cursor: se-resize;
+}
+
+.image-resizer-s {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: s-resize;
+}
+
+.image-resizer-sw {
+  bottom: -4px;
+  left: -4px;
+  cursor: sw-resize;
+}
+
+.image-resizer-w {
+  top: 50%;
+  left: -4px;
+  transform: translateY(-50%);
+  cursor: w-resize;
+}
+
+.image-resizer-nw {
+  top: -4px;
+  left: -4px;
+  cursor: nw-resize;
+}
+
+/* Image container styles */
+.image-container {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focused state */
+.image-container.focused {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.image-container.focused.draggable {
+  cursor: move;
+}
+
+/* Resizing state */
+.image-control-wrapper--resizing .image-resizer {
+  background: #007bff;
+  border-color: #0056b3;
+  transform: scale(1.3);
+}
+
+.image-control-wrapper--resizing .image-resizer:hover {
+  transform: scale(1.4);
+}
+
+/* Broken image styles */
+.broken-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .image-resizer {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .image-resizer {
+    background: #2d3748;
+    border-color: #4299e1;
+  }
+
+  .image-resizer:hover {
+    background: #4299e1;
+  }
+
+  .broken-image {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #a0aec0;
+  }
+}
