@@ -80,14 +80,19 @@
 /* Image wrapper for resizing */
 .editor-image .image-wrapper {
   position: relative;
-  display: inline-block;
+  display: block;
   max-width: 100%;
 }
 
 .image-wrapper {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: fit-content;
   max-width: 100%;
+}
+
+.image-wrapper div {
+  display: inline-block;
 }
 
 /* Loading state */

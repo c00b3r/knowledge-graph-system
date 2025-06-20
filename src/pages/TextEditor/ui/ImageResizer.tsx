@@ -64,8 +64,8 @@ export default function ImageResizer({
   });
   const editorRootElement = editor.getRootElement();
   // Find max width based on image size, not window width
-  const maxWidthContainer = maxWidth || 500;
-  const maxHeightContainer = 500;
+  const maxWidthContainer = maxWidth || 700;
+  const maxHeightContainer = 700;
 
   const minWidth = 100;
   const minHeight = 100;

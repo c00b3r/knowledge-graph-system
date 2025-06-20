@@ -128,7 +128,7 @@ function LazyImage({
       finalHeight = Math.round(finalHeight * scale);
     }
 
-    const maxHeight = 500;
+    const maxHeight = 700;
     if (finalHeight > maxHeight) {
       const scale = maxHeight / finalHeight;
       finalHeight = maxHeight;
@@ -395,10 +395,7 @@ export default function ImageComponent({
   const isFocused = (isSelected || isResizing) && isEditable;
   return (
     <Suspense fallback={null}>
-      <div
-        className="image-wrapper"
-        style={{ position: "relative", display: "block" }}
-      >
+      <div className="image-wrapper">
         <div draggable={draggable}>
           {isLoadError ? (
             <BrokenImage />

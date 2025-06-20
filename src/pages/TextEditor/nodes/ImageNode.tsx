@@ -249,7 +249,7 @@ export class ImageNode extends DecoratorNode<React.JSX.Element> {
 export function $createImageNode({
   altText,
   height,
-  maxWidth = 500,
+  maxWidth = 700,
   captionsEnabled,
   src,
   width,
