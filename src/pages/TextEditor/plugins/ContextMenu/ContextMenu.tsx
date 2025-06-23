@@ -19,6 +19,8 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { getSelectedNode } from "../../../../utils/getSelectedNode";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import { INSERT_IMAGE_COMMAND } from "../ImagesPlugin/ImagesPlugin";
+import InsertMenu from "./SubContextMenu/InsertMenu";
+import ParagraphMenu from "./SubContextMenu/ParagraphMenu";
 
 export default function ContextMenu({
   contextMenu,
@@ -210,6 +212,8 @@ export default function ContextMenu({
         </span>
         Выделить В С Ё
       </button>
+      <InsertMenu />
+      <ParagraphMenu />
     </div>
   );
 }
