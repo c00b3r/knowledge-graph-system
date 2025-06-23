@@ -19,7 +19,7 @@ function MainHeader() {
         className='breadcrumb'
         items={[
           {
-            title: 'Home',
+            title: '',
           },
         ]}
       />

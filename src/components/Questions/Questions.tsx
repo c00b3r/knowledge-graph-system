@@ -1,35 +1,24 @@
-import { Flex, Tooltip } from "antd";
-import { Input } from "antd";
-import { Button, Dropdown} from 'antd';
+import { Flex, Tooltip } from 'antd';
+import { Input } from 'antd';
+import { Button, Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import AddIcon from "../icons/AddIcon";
-import HelpIcon from "../icons/HelpIcon";
+import AddIcon from '../icons/AddIcon';
+import HelpIcon from '../icons/HelpIcon';
 import './Questions.css';
-import Question from "../Question/Question";
-import { NavLink } from "react-router";
+import Question from '../Question/Question';
 
 function QuestionsItem({
   title,
   icon,
-  to,
 }: {
   title: string;
   icon: React.ReactNode;
-  to: string;
 }) {
   return (
-    <NavLink to={to}>
-      {({ isActive }) => (
-        <Tooltip title={title}>
-          <div
-            className={`navigation-menu-nav-item ${isActive ? 'active' : ''}`}
-          >
-            {icon}
-          </div>
-        </Tooltip>
-      )}
-    </NavLink>
+    <Tooltip title={title}>
+      <div className='navigation-menu-nav-item'>{icon}</div>
+    </Tooltip>
   );
 }
 
@@ -59,38 +48,44 @@ const items: MenuProps['items'] = [
 ];
 
 const menuProps = {
-  items
+  items,
 };
 
 function Questions() {
-  return <div style={{ width: '194px', backgroundColor: '#2E323A' }}>
-      <Flex vertical gap={'8px'} style={{margin: '16px'}}>
-        <Search placeholder="Поиск"  className="search-box"/>
-        <Dropdown menu={menuProps} className="questions-dropdown">
+  return (
+    <div style={{ width: '194px', backgroundColor: '#2E323A' }}>
+      <Flex vertical gap={'8px'} style={{ margin: '16px' }}>
+        <Search placeholder='Поиск' className='search-box' />
+        <Dropdown menu={menuProps} className='questions-dropdown'>
           <Button>
-            <Flex gap={'58px'} justify="start">
+            <Flex gap={'58px'} justify='start'>
               Аналитика
-            <DownOutlined />
+              <DownOutlined />
             </Flex>
-        </Button>
+          </Button>
         </Dropdown>
-        <Flex  align="center" justify="space-between" style={{padding: '0 4px'}}>
-          <QuestionsItem title='Добавить вопрос' icon={<AddIcon />} to='/*' />
-          <QuestionsItem title='Справка' icon={<HelpIcon />} to='/*' />
+        <Flex
+          align='center'
+          justify='space-between'
+          style={{ padding: '0 4px' }}
+        >
+          <QuestionsItem title='Добавить вопрос' icon={<AddIcon />} />
+          <QuestionsItem title='Справка' icon={<HelpIcon />} />
         </Flex>
         <Flex vertical gap={'2px'}>
-          <Question/>
-          <Question/>
-          <Question/>
-          <Question/>
-          <Question/>
-          <Question/>
-          <Question/>
-          <Question/>
-          <Question/>
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
         </Flex>
       </Flex>
-  </div>;
+    </div>
+  );
 }
 
 export default Questions;
