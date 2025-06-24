@@ -1,15 +1,24 @@
+import { NavLink } from 'react-router';
 import './Question.css';
 
 type QuestionProps = {
-  text:string;
-}
+  text: string;
+  id: number;
+};
 
-const Question: React.FC<QuestionProps> = ({ text }) => {
+const Question: React.FC<QuestionProps> = ({ text, id }) => {
   return (
-    <div className="question">
-        <p className='question-text'>{text}</p>
-    </div>
-  )
-}
+    <NavLink to={`/editor/${id}`}>
+      {({ isActive }) => (
+        <div
+          className={` ${isActive ? 'question-active' : 'question'}`}
+          title={text}
+        >
+          <p className='question-text'>{text}</p>
+        </div>
+      )}
+    </NavLink>
+  );
+};
 
 export default Question;

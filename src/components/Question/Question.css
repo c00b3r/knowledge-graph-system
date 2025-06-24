@@ -10,9 +10,28 @@
   padding-left: 4px;
 }
 
-.question:hover {
+.question-active {
+  width: 162px;
+  height: 28px;
+  color: #838790;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
   background-color: #cadaf7;
   color: #045bff;
+}
+
+.question-active:hover {
+  background-color: #cadaf7;
+  color: #045bff;
+}
+
+.question:hover {
+  background-color: #f0f0f0;
+  color: #838790;
   cursor: pointer;
 }
 
