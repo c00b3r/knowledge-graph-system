@@ -1,7 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { Network } from 'vis-network';
+import { useEffect, useRef } from "react";
+import { Network } from "vis-network";
+import { useNavigate } from "react-router";
 
 function Graph() {
+  const navigate = useNavigate();
+
   const graphContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -9,31 +12,31 @@ function Graph() {
     const nodes = [
       {
         id: 1,
-        label: 'Проект',
+        label: "Проект",
         size: 40,
         font: { size: 20 },
-        color: '#4AA1FF',
-        borderColor: '#045BFF',
+        color: "#4AA1FF",
+        borderColor: "#045BFF",
         borderWidth: 1,
-        cursor: 'pointer',
+        cursor: "pointer",
       },
 
-      { id: 2, label: 'Аналитика', size: 24 },
-      { id: 3, label: 'Проектирование', size: 24 },
-      { id: 4, label: 'Разработка', size: 24 },
-      { id: 5, label: 'Тестирование', size: 24 },
-      { id: 6, label: 'Подготовка к защите', size: 24 },
+      { id: 2, label: "Аналитика", size: 24 },
+      { id: 3, label: "Проектирование", size: 24 },
+      { id: 4, label: "Разработка", size: 24 },
+      { id: 5, label: "Тестирование", size: 24 },
+      { id: 6, label: "Подготовка к защите", size: 24 },
 
-      { id: 7, label: 'Тех. задание', size: 24 },
-      { id: 8, label: 'Требования', size: 24 },
-      { id: 9, label: 'Диаграммы', size: 24 },
-      { id: 10, label: 'Архитектура', size: 24 },
-      { id: 11, label: 'Исходный код', size: 24 },
-      { id: 12, label: 'API док', size: 24 },
-      { id: 13, label: 'Тест-кейсы', size: 24 },
-      { id: 14, label: 'Результаты', size: 24 },
-      { id: 15, label: 'Презентация', size: 24 },
-      { id: 16, label: 'Отчёт', size: 24 },
+      { id: 7, label: "Тех. задание", size: 24 },
+      { id: 8, label: "Требования", size: 24 },
+      { id: 9, label: "Диаграммы", size: 24 },
+      { id: 10, label: "Архитектура", size: 24 },
+      { id: 11, label: "Исходный код", size: 24 },
+      { id: 12, label: "API док", size: 24 },
+      { id: 13, label: "Тест-кейсы", size: 24 },
+      { id: 14, label: "Результаты", size: 24 },
+      { id: 15, label: "Презентация", size: 24 },
+      { id: 16, label: "Отчёт", size: 24 },
     ];
 
     const edges = [
@@ -61,25 +64,25 @@ function Graph() {
 
     const options = {
       nodes: {
-        shape: 'dot',
-        font: { size: 14, color: 'rgb(0, 0, 0, 0.85)' },
+        shape: "dot",
+        font: { size: 14, color: "rgb(0, 0, 0, 0.85)" },
         color: {
           hover: {
-            background: '#4AA1FF',
-            border: 'none',
+            background: "#4AA1FF",
+            border: "none",
           },
-          background: '#C2C3C5',
-          border: 'none',
+          background: "#C2C3C5",
+          border: "none",
           highlight: {
-            background: '#2C83FF',
-            border: 'none',
+            background: "#2C83FF",
+            border: "none",
           },
         },
       },
       edges: {
         width: 2,
-        color: { color: '#A4A5A7', highlight: '#2C83FF', hover: '#68BFF5' },
-        smooth: { enabled: true, type: 'continuous', roundness: 0.5 },
+        color: { color: "#A4A5A7", highlight: "#2C83FF", hover: "#68BFF5" },
+        smooth: { enabled: true, type: "continuous", roundness: 0.5 },
       },
       interaction: {
         hover: true,
@@ -104,12 +107,20 @@ function Graph() {
 
     const network = new Network(graphContainer.current, data, options);
 
-    network.on('hoverNode', () => {
-      graphContainer.current!.style.cursor = 'pointer';
+    network.on("hoverNode", () => {
+      graphContainer.current!.style.cursor = "pointer";
     });
 
-    network.on('blurNode', () => {
-      graphContainer.current!.style.cursor = 'default';
+    network.on("doubleClick", function (params) {
+      if (params.nodes.length > 0) {
+        const nodeId = params.nodes[0];
+        navigate(`/editor`);
+        console.log("Clicked node:", nodeId);
+      }
+    });
+
+    network.on("blurNode", () => {
+      graphContainer.current!.style.cursor = "default";
     });
   }, []);
 
@@ -118,9 +129,9 @@ function Graph() {
       <div
         ref={graphContainer}
         style={{
-          width: '100%',
-          height: 'calc(100vh - 56px)',
-          backgroundColor: '#f0f2f5',
+          width: "100%",
+          height: "calc(100vh - 56px)",
+          backgroundColor: "#f0f2f5",
         }}
       ></div>
     </>
