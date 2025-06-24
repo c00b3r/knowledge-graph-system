@@ -1,9 +1,7 @@
 .image-resizer {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #ffffff;
-  border: 2px solid #007bff;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -11,9 +9,7 @@
 }
 
 .image-resizer:hover {
-  background: #007bff;
-  transform: scale(1.2);
-  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+  background: #606260;
 }
 
 .image-resizer:active {
@@ -21,60 +17,58 @@
   transform: scale(1.1);
 }
 
-/* Position the resizer handles */
 .image-resizer-n {
-  top: -4px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
   cursor: n-resize;
 }
 
 .image-resizer-ne {
-  top: -4px;
-  right: -4px;
+  top: -8px;
+  right: -8px;
   cursor: ne-resize;
 }
 
 .image-resizer-e {
   top: 50%;
-  right: -4px;
+  right: -8px;
   transform: translateY(-50%);
   cursor: e-resize;
 }
 
 .image-resizer-se {
-  bottom: -4px;
-  right: -4px;
+  bottom: -8px;
+  right: -8px;
   cursor: se-resize;
 }
 
 .image-resizer-s {
-  bottom: -4px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
   cursor: s-resize;
 }
 
 .image-resizer-sw {
-  bottom: -4px;
-  left: -4px;
+  bottom: -8px;
+  left: -8px;
   cursor: sw-resize;
 }
 
 .image-resizer-w {
   top: 50%;
-  left: -4px;
+  left: -8px;
   transform: translateY(-50%);
   cursor: w-resize;
 }
 
 .image-resizer-nw {
-  top: -4px;
-  left: -4px;
+  top: -8px;
+  left: -8px;
   cursor: nw-resize;
 }
 
-/* Image container styles */
 .image-container {
   position: relative;
   display: inline-block;
@@ -87,10 +81,8 @@
   height: auto;
 }
 
-/* Focused state */
 .image-container.focused {
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
+  outline-offset: 1px;
   border-radius: 4px;
 }
 
@@ -102,14 +94,12 @@
 .image-control-wrapper--resizing .image-resizer {
   background: #007bff;
   border-color: #0056b3;
-  transform: scale(1.3);
 }
 
 .image-control-wrapper--resizing .image-resizer:hover {
   transform: scale(1.4);
 }
 
-/* Broken image styles */
 .broken-image {
   display: flex;
   align-items: center;
@@ -124,15 +114,13 @@
   text-align: center;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .image-resizer {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
   }
 }
 
-/* Dark theme support */
 @media (prefers-color-scheme: dark) {
   .image-resizer {
     background: #2d3748;

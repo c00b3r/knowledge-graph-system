@@ -395,7 +395,7 @@ export default function ImageComponent({
   const isFocused = (isSelected || isResizing) && isEditable;
   return (
     <Suspense fallback={null}>
-      <div className="image-wrapper">
+      <div className={`image-wrapper ${isFocused ? "focused" : ""}`}>
         <div draggable={draggable}>
           {isLoadError ? (
             <BrokenImage />

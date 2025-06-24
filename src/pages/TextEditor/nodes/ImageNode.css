@@ -91,6 +91,12 @@
   max-width: 100%;
 }
 
+.image-wrapper.focused {
+  outline: 1px solid #045bff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .image-wrapper div {
   display: inline-block;
 }
