@@ -228,7 +228,7 @@ export default function ContextMenu({
         <span className='context-menu-item-icon'>
           <SelectIcon />
         </span>
-        Выделить В С Ё
+        Выделить всё
       </button>
     </div>
   );
