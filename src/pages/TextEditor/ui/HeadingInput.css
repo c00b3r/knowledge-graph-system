@@ -16,6 +16,12 @@
   outline: none;
   border: none;
   background-color: #f0f2f5;
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  resize: none;
+  min-height: 28px;
 }
 
 .heading-input::selection {
