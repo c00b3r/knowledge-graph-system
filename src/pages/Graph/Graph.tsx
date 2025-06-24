@@ -61,7 +61,7 @@ function Graph() {
           'Как вы предсказываете риски или задержки в проекте?',
           25
         ),
-        data: '4',
+        data: undefined,
       },
       {
         id: 11,
@@ -166,7 +166,11 @@ function Graph() {
       if (params.nodes.length > 0) {
         const nodeId = params.nodes[0];
         const id = nodes.find((node) => node.id === nodeId)?.data;
-        navigate(`/editor/${id}`);
+        if (id === undefined) {
+          navigate('/');
+        } else {
+          navigate(`/editor/${id}`);
+        }
       }
     });
 

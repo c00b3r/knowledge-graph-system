@@ -39,7 +39,7 @@ function NavigationMenu() {
         <NavigationItem
           title='Текстовый редактор'
           icon={<TextIcon />}
-          to='/editor'
+          to='/editor/1'
         />
         <NavigationItem title='Граф' icon={<GraphIcon />} to='/graph' />
         <NavigationItem title='Список' icon={<ListIcon />} to='/list' />

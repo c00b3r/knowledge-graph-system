@@ -2,7 +2,7 @@ import Question from '../Question/Question';
 import { Flex } from 'antd';
 
 type QuestionsListProps = {
-  questions: { text: string; id: number }[];
+  questions: { text: string; id?: number }[];
   count: number;
 };
 
