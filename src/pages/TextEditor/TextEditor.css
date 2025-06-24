@@ -30,11 +30,27 @@
 .editor-heading-h1 {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 36px;
   letter-spacing: 0px;
   vertical-align: middle;
   margin-bottom: 16px;
+}
+
+.editor-heading-h2 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0px;
+}
+
+.editor-heading-h3 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
 }
 
 .editor-paragraph {

@@ -24,6 +24,8 @@ import CheckListPlugin from "./plugins/CheckListPlugin/CheckListPlugin";
 const theme: EditorThemeClasses = {
   heading: {
     h1: "editor-heading-h1",
+    h2: "editor-heading-h2",
+    h3: "editor-heading-h3",
   },
   paragraph: "editor-paragraph",
   text: {

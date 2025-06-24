@@ -12,7 +12,14 @@ import {
   INSERT_UNORDERED_LIST_COMMAND,
   INSERT_CHECK_LIST_COMMAND,
 } from "@lexical/list";
-import { $getSelection, $isRangeSelection } from "lexical";
+import {
+  $createParagraphNode,
+  $getSelection,
+  $isRangeSelection,
+  $isTextNode,
+} from "lexical";
+import { $createHeadingNode, $isHeadingNode } from "@lexical/rich-text";
+import { $setBlocksType } from "@lexical/selection";
 
 function ParagraphMenu() {
   const paragraphMenuRef = useRef<HTMLDivElement>(null);
@@ -64,6 +71,40 @@ function ParagraphMenu() {
     });
   };
 
+  const createHeading = (level: "h1" | "h2" | "h3") => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if (selection) {
+        const nodes = selection.getNodes();
+        const firstNode = nodes[0];
+
+        if ($isHeadingNode(firstNode) && firstNode.getTag() === level) {
+          $setBlocksType(selection, () => $createParagraphNode());
+        } else {
+          $setBlocksType(selection, () => $createHeadingNode(level));
+        }
+      }
+    });
+  };
+
+  const removeHeading = () => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if (selection) {
+        const nodes = selection.getNodes();
+
+        const hasHeading = nodes.some((node) => {
+          const targetNode = $isTextNode(node) ? node.getParent() : node;
+          return $isHeadingNode(targetNode);
+        });
+
+        if (hasHeading) {
+          $setBlocksType(selection, () => $createParagraphNode());
+        }
+      }
+    });
+  };
+
   return (
     <div
       className="context-menu"
@@ -100,25 +141,25 @@ function ParagraphMenu() {
         Список задач
       </button>
       <div className="context-menu-divider" />
-      <button className="context-menu-item">
+      <button className="context-menu-item" onClick={() => createHeading("h1")}>
         <span className="context-menu-item-icon">
           <H1Icon />
         </span>
         Заголовок уровня 1
       </button>
-      <button className="context-menu-item">
+      <button className="context-menu-item" onClick={() => createHeading("h2")}>
         <span className="context-menu-item-icon">
           <H2Icon />
         </span>
         Заголовок уровня 2
       </button>
-      <button className="context-menu-item">
+      <button className="context-menu-item" onClick={() => createHeading("h3")}>
         <span className="context-menu-item-icon">
           <H3Icon />
         </span>
         Заголовок уровня 3
       </button>
-      <button className="context-menu-item">
+      <button className="context-menu-item" onClick={() => removeHeading()}>
         <span className="context-menu-item-icon">
           <RemoveHeaderIcon />
         </span>
