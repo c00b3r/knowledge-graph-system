@@ -1,13 +1,15 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import './HeadingInput.css';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import data from '../../../../public/mock-data/data.json';
 
 function HeadingInput() {
   const [editor] = useLexicalComposerContext();
   const [heading, setHeading] = useState('Без названия');
   const [prevHeading, setPrevHeading] = useState('Без названия');
   const [emptyError, setEmptyError] = useState(false);
-  const [textareaHeight, setTextareaHeight] = useState(28);
+  const params = useParams();
 
   function autoResizeTextarea(textareaElement: HTMLTextAreaElement) {
     textareaElement.style.height = 'auto';
@@ -37,9 +39,23 @@ function HeadingInput() {
       '.heading-input'
     ) as HTMLTextAreaElement;
     if (textarea) {
-      setTextareaHeight(textarea.scrollHeight);
+      autoResizeTextarea(textarea);
     }
-  }, []);
+  });
+
+  useEffect(() => {
+    const editorContent = () => {
+      try {
+        const file = data.filter((item) => item.id === Number(params.fileId));
+
+        setHeading(file[0].heading);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    editorContent();
+  }, [params]);
 
   const handleBlur = () => {
     if (heading.trim() === '') {
@@ -66,7 +82,7 @@ function HeadingInput() {
         className='heading-input'
         value={heading}
         name='heading'
-        style={{ height: textareaHeight }}
+        style={{ height: 28 }}
         rows={1}
       />
       {emptyError && (

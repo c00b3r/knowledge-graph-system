@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import { Network } from "vis-network";
-import { useNavigate } from "react-router";
+import { useEffect, useRef } from 'react';
+import { Network } from 'vis-network';
+import { useNavigate } from 'react-router';
 
-function truncateText(text:string, maxLength:number) {
+function truncateText(text: string, maxLength: number) {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
   }
@@ -19,31 +19,75 @@ function Graph() {
     const nodes = [
       {
         id: 1,
-        label: "Проект",
+        label: 'Проект',
         size: 40,
         font: { size: 20 },
-        color: "#4AA1FF",
-        borderColor: "#045BFF",
+        color: '#4AA1FF',
+        borderColor: '#045BFF',
         borderWidth: 1,
-        cursor: "pointer",
+        cursor: 'pointer',
       },
 
-      { id: 2, label: "Аналитика", size: 24},
-      { id: 3, label: "Проектирование", size: 24 },
-      { id: 4, label: "Разработка", size: 24 },
-      { id: 5, label: "Тестирование", size: 24 },
-      { id: 6, label: "Подготовка к защите", size: 24 },
+      { id: 2, label: 'Аналитика', size: 24 },
+      { id: 3, label: 'Проектирование', size: 24 },
+      { id: 4, label: 'Разработка', size: 24 },
+      { id: 5, label: 'Тестирование', size: 24 },
+      { id: 6, label: 'Подготовка к защите', size: 24 },
 
-      { id: 7, label: truncateText("Какие ключевые метрики вы отслеживаете для оценки успешности проекта?", 25) },
-      { id: 8, label: truncateText("Какие инструменты (Google Analytics, Excel, Power BI, SQL) вы используете и почему?", 25) },
-      { id: 9, label: truncateText("Как вы представляете данные команде?", 25) },
-      { id: 10, label: truncateText("Как вы предсказываете риски или задержки в проекте?", 25) },
-      { id: 11, label: truncateText("Как вы собираете и анализируете фидбэк от участников?", 25) },
-      { id: 12, label: truncateText("Какие рутинные процессы можно автоматизировать в аналитике?", 25) },
-      { id: 13, label: truncateText("С какими аналогичными проектами вы сравниваете результаты?", 25) },
-      { id: 14, label: "Исходный код", size: 24},
-      { id: 15, label: "Презентация", size: 24 },
-      { id: 16, label: "Отчёт", size: 24 },
+      {
+        id: 7,
+        label: truncateText(
+          'Какие ключевые метрики вы отслеживаете для оценки успешности проекта?',
+          25
+        ),
+        data: '1',
+      },
+      {
+        id: 8,
+        label: truncateText(
+          'Какие инструменты (Google Analytics, Excel, Power BI, SQL) вы используете и почему?',
+          25
+        ),
+        data: '2',
+      },
+      {
+        id: 9,
+        label: truncateText('Как вы представляете данные команде?', 25),
+        data: '4',
+      },
+      {
+        id: 10,
+        label: truncateText(
+          'Как вы предсказываете риски или задержки в проекте?',
+          25
+        ),
+        data: '4',
+      },
+      {
+        id: 11,
+        label: truncateText(
+          'Как вы собираете и анализируете фидбэк от участников?',
+          25
+        ),
+      },
+      {
+        id: 12,
+        label: truncateText(
+          'Какие частые ошибки в данных вы находите и как их исправляете?',
+          25
+        ),
+        data: '3',
+      },
+      {
+        id: 13,
+        label: truncateText(
+          'С какими аналогичными проектами вы сравниваете результаты?',
+          25
+        ),
+      },
+      { id: 14, label: 'Исходный код', size: 24 },
+      { id: 15, label: 'Презентация', size: 24 },
+      { id: 16, label: 'Отчёт', size: 24 },
     ];
 
     const edges = [
@@ -71,25 +115,25 @@ function Graph() {
 
     const options = {
       nodes: {
-        shape: "dot",
-        font: { size: 14, color: "rgb(0, 0, 0, 0.85)"},
+        shape: 'dot',
+        font: { size: 14, color: 'rgb(0, 0, 0, 0.85)' },
         color: {
           hover: {
-            background: "#4AA1FF",
-            border: "none",
+            background: '#4AA1FF',
+            border: 'none',
           },
-          background: "#C2C3C5",
-          border: "none",
+          background: '#C2C3C5',
+          border: 'none',
           highlight: {
-            background: "#2C83FF",
-            border: "none",
+            background: '#2C83FF',
+            border: 'none',
           },
         },
       },
       edges: {
         width: 2,
-        color: { color: "#A4A5A7", highlight: "#2C83FF", hover: "#68BFF5" },
-        smooth: { enabled: true, type: "continuous", roundness: 0.5 },
+        color: { color: '#A4A5A7', highlight: '#2C83FF', hover: '#68BFF5' },
+        smooth: { enabled: true, type: 'continuous', roundness: 0.5 },
       },
       interaction: {
         hover: true,
@@ -114,31 +158,31 @@ function Graph() {
 
     const network = new Network(graphContainer.current, data, options);
 
-    network.on("hoverNode", () => {
-      graphContainer.current!.style.cursor = "pointer";
+    network.on('hoverNode', () => {
+      graphContainer.current!.style.cursor = 'pointer';
     });
 
-    network.on("doubleClick", function (params) {
+    network.on('doubleClick', function (params) {
       if (params.nodes.length > 0) {
         const nodeId = params.nodes[0];
-        navigate(`/editor`);
-        console.log("Clicked node:", nodeId);
+        const id = nodes.find((node) => node.id === nodeId)?.data;
+        navigate(`/editor/${id}`);
       }
     });
 
-    network.on("blurNode", () => {
-      graphContainer.current!.style.cursor = "default";
+    network.on('blurNode', () => {
+      graphContainer.current!.style.cursor = 'default';
     });
-  }, []);
+  }, [navigate]);
 
   return (
     <>
       <div
         ref={graphContainer}
         style={{
-          width: "100%",
-          height: "calc(100vh - 56px)",
-          backgroundColor: "#f0f2f5",
+          width: '100%',
+          height: 'calc(100vh - 56px)',
+          backgroundColor: '#f0f2f5',
         }}
       ></div>
     </>
