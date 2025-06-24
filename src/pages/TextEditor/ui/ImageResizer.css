@@ -123,8 +123,7 @@
 
 @media (prefers-color-scheme: dark) {
   .image-resizer {
-    background: #2d3748;
-    border-color: #4299e1;
+    background: #045bff;
   }
 
   .image-resizer:hover {
