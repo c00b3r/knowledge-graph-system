@@ -7,7 +7,7 @@ type QuestionProps = {
 const Question: React.FC<QuestionProps> = ({ text }) => {
   return (
     <div className="question">
-        <p>{text}</p>
+        <p className='question-text'>{text}</p>
     </div>
   )
 }
