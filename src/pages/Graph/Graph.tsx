@@ -2,6 +2,13 @@ import { useEffect, useRef } from "react";
 import { Network } from "vis-network";
 import { useNavigate } from "react-router";
 
+function truncateText(text:string, maxLength:number) {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  return text;
+}
+
 function Graph() {
   const navigate = useNavigate();
 
@@ -21,20 +28,20 @@ function Graph() {
         cursor: "pointer",
       },
 
-      { id: 2, label: "Аналитика", size: 24 },
+      { id: 2, label: "Аналитика", size: 24},
       { id: 3, label: "Проектирование", size: 24 },
       { id: 4, label: "Разработка", size: 24 },
       { id: 5, label: "Тестирование", size: 24 },
       { id: 6, label: "Подготовка к защите", size: 24 },
 
-      { id: 7, label: "Тех. задание", size: 24 },
-      { id: 8, label: "Требования", size: 24 },
-      { id: 9, label: "Диаграммы", size: 24 },
-      { id: 10, label: "Архитектура", size: 24 },
-      { id: 11, label: "Исходный код", size: 24 },
-      { id: 12, label: "API док", size: 24 },
-      { id: 13, label: "Тест-кейсы", size: 24 },
-      { id: 14, label: "Результаты", size: 24 },
+      { id: 7, label: truncateText("Какие ключевые метрики вы отслеживаете для оценки успешности проекта?", 25) },
+      { id: 8, label: truncateText("Какие инструменты (Google Analytics, Excel, Power BI, SQL) вы используете и почему?", 25) },
+      { id: 9, label: truncateText("Как вы представляете данные команде?", 25) },
+      { id: 10, label: truncateText("Как вы предсказываете риски или задержки в проекте?", 25) },
+      { id: 11, label: truncateText("Как вы собираете и анализируете фидбэк от участников?", 25) },
+      { id: 12, label: truncateText("Какие рутинные процессы можно автоматизировать в аналитике?", 25) },
+      { id: 13, label: truncateText("С какими аналогичными проектами вы сравниваете результаты?", 25) },
+      { id: 14, label: "Исходный код", size: 24},
       { id: 15, label: "Презентация", size: 24 },
       { id: 16, label: "Отчёт", size: 24 },
     ];
@@ -65,7 +72,7 @@ function Graph() {
     const options = {
       nodes: {
         shape: "dot",
-        font: { size: 14, color: "rgb(0, 0, 0, 0.85)" },
+        font: { size: 14, color: "rgb(0, 0, 0, 0.85)"},
         color: {
           hover: {
             background: "#4AA1FF",
