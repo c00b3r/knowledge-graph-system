@@ -33,6 +33,10 @@
     box-shadow: none;
 }
 
+.ant-input-search-button:hover {
+    border: none;
+}
+
 .ant-input-outlined::placeholder{
     color: #838790;
 }

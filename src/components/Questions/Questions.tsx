@@ -6,7 +6,7 @@ import { DownOutlined } from '@ant-design/icons';
 import AddIcon from '../icons/AddIcon';
 import HelpIcon from '../icons/HelpIcon';
 import './Questions.css';
-import Question from '../Question/Question';
+import QuestionsList from '../QuestionList/QuestionList';
 
 function QuestionsItem({
   title,
@@ -51,6 +51,19 @@ const menuProps = {
   items,
 };
 
+const questions:string[] = [
+  'Какие ключевые метрики вы отслеживаете для оценки успешности проекта?',
+  'Какие инструменты (Google Analytics, Excel, Power BI, SQL) вы используете и почему?',
+  'Какие частые ошибки в данных вы находите и как их исправляете?',
+  'Как вы представляете данные команде?',
+  'Как вы предсказываете риски или задержки в проекте?',
+  'Как вы собираете и анализируете фидбэк от участников?',
+  'Какие рутинные процессы можно автоматизировать в аналитике?',
+  'С какими аналогичными проектами вы сравниваете результаты?'
+]
+
+const questionsCount:number = questions.length;
+
 function Questions() {
   return (
     <div style={{ width: '194px', backgroundColor: '#2E323A' }}>
@@ -72,17 +85,7 @@ function Questions() {
           <QuestionsItem title='Добавить вопрос' icon={<AddIcon />} />
           <QuestionsItem title='Справка' icon={<HelpIcon />} />
         </Flex>
-        <Flex vertical gap={'2px'}>
-          <Question />
-          <Question />
-          <Question />
-          <Question />
-          <Question />
-          <Question />
-          <Question />
-          <Question />
-          <Question />
-        </Flex>
+        <QuestionsList questions={questions} count={questionsCount} />;
       </Flex>
     </div>
   );

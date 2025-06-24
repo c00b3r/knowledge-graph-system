@@ -1,9 +1,13 @@
 import './Question.css';
 
-function Question() {
+type QuestionProps = {
+  text:string;
+}
+
+const Question: React.FC<QuestionProps> = ({ text }) => {
   return (
     <div className="question">
-        <p>Какие ключевые мет...</p>
+        <p>{text}</p>
     </div>
   )
 }
