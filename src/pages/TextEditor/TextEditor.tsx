@@ -17,6 +17,9 @@ import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin/Floatin
 import { ImageNode } from "./nodes/ImageNode";
 import ImagesPlugin from "./plugins/ImagesPlugin/ImagesPlugin";
 import DragDropPastePlugin from "./plugins/DragDropPastePlugin/DragDropPastePlugin";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+import { ListItemNode, ListNode } from "@lexical/list";
+import CheckListPlugin from "./plugins/CheckListPlugin/CheckListPlugin";
 
 const theme: EditorThemeClasses = {
   heading: {
@@ -35,13 +38,22 @@ const theme: EditorThemeClasses = {
     lowercase: "editor-text-lowercase",
     capitalize: "editor-text-capitalize",
   },
+  list: {
+    checklist: "checklist",
+    listitem: "listItem",
+    listitemChecked: "listItemChecked",
+    listitemUnchecked: "listItemUnchecked",
+    nested: {
+      listitem: "nestedListItem",
+    },
+  },
   link: "editor-link",
 };
 
 const initialConfig = {
   namespace: "MyEditor",
   theme,
-  nodes: [HeadingNode, LinkNode, ImageNode],
+  nodes: [HeadingNode, LinkNode, ImageNode, ListNode, ListItemNode],
   onError: (error: Error) => console.error(error),
   editorState: null,
   formatters: [
@@ -112,6 +124,8 @@ function TextEditor() {
   return (
     <div className="text-editor-container">
       <LexicalComposer initialConfig={initialConfig}>
+        <ListPlugin />
+        <CheckListPlugin />
         <HeadingInput />
         <InitialStructurePlugin />
         <RichTextPlugin

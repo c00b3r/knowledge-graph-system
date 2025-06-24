@@ -1,92 +1,125 @@
-import ListIcon from '../../../../../components/icons/ContextMenu/ListIcon';
-import NumberedListIcon from '../../../../../components/icons/ContextMenu/NumberedListIcon';
-import CheckListIcon from '../../../../../components/icons/ContextMenu/CheckListIcon';
-import H1Icon from '../../../../../components/icons/ContextMenu/H1Icon';
-import H2Icon from '../../../../../components/icons/ContextMenu/H2Icon';
-import H3Icon from '../../../../../components/icons/ContextMenu/H3Icon';
-import RemoveHeaderIcon from '../../../../../components/icons/ContextMenu/RemoveHeaderIcon';
-import { useEffect, useRef, useState } from 'react';
+import ListIcon from "../../../../../components/icons/ContextMenu/ListIcon";
+import NumberedListIcon from "../../../../../components/icons/ContextMenu/NumberedListIcon";
+import CheckListIcon from "../../../../../components/icons/ContextMenu/CheckListIcon";
+import H1Icon from "../../../../../components/icons/ContextMenu/H1Icon";
+import H2Icon from "../../../../../components/icons/ContextMenu/H2Icon";
+import H3Icon from "../../../../../components/icons/ContextMenu/H3Icon";
+import RemoveHeaderIcon from "../../../../../components/icons/ContextMenu/RemoveHeaderIcon";
+import { useEffect, useRef, useState } from "react";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import {
+  INSERT_ORDERED_LIST_COMMAND,
+  INSERT_UNORDERED_LIST_COMMAND,
+  INSERT_CHECK_LIST_COMMAND,
+} from "@lexical/list";
+import { $getSelection, $isRangeSelection } from "lexical";
 
 function ParagraphMenu() {
   const paragraphMenuRef = useRef<HTMLDivElement>(null);
   const [positionY, setPositionY] = useState(0);
+  const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
-    if (
-      paragraphMenuRef.current?.getBoundingClientRect() &&
-      paragraphMenuRef.current.parentElement?.parentElement?.parentElement
-        ?.clientHeight
-    ) {
-      const rect = paragraphMenuRef.current.getBoundingClientRect();
+    const menu = paragraphMenuRef.current;
+    const container = menu?.parentElement?.parentElement?.parentElement;
 
-      console.log(
-        rect.y + 249,
-        paragraphMenuRef.current.parentElement?.parentElement?.parentElement
-          ?.clientHeight
-      );
+    if (menu && container) {
+      const menuRect = menu.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
 
-      if (
-        rect.y + 249 >
-        paragraphMenuRef.current.parentElement?.parentElement?.parentElement
-          ?.clientHeight
-      ) {
-        setPositionY(rect.y - 470);
+      const spaceBelow = containerRect.bottom - menuRect.bottom;
+
+      if (Number(spaceBelow.toFixed(0)) <= 0) {
+        setPositionY((prev) => prev + spaceBelow - 40);
       } else {
         setPositionY(0);
       }
     }
   }, []);
 
+  const createList = (listType: "bullet" | "number" | "check") => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        const textContent = selection.getTextContent();
+
+        if (textContent.trim() === "") {
+          const command =
+            listType === "bullet"
+              ? INSERT_UNORDERED_LIST_COMMAND
+              : listType === "number"
+              ? INSERT_ORDERED_LIST_COMMAND
+              : INSERT_CHECK_LIST_COMMAND;
+          editor.dispatchCommand(command, undefined);
+        } else {
+          const command =
+            listType === "bullet"
+              ? INSERT_UNORDERED_LIST_COMMAND
+              : listType === "number"
+              ? INSERT_ORDERED_LIST_COMMAND
+              : INSERT_CHECK_LIST_COMMAND;
+          editor.dispatchCommand(command, undefined);
+        }
+      }
+    });
+  };
+
   return (
     <div
-      className='context-menu'
+      className="context-menu"
       style={{
-        position: 'absolute',
-        left: '228px',
+        position: "absolute",
+        left: "228px",
         top: positionY,
         zIndex: 1001,
       }}
       ref={paragraphMenuRef}
     >
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <button
+        className="context-menu-item"
+        onClick={() => createList("bullet")}
+      >
+        <span className="context-menu-item-icon">
           <ListIcon />
         </span>
         Список
       </button>
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <button
+        className="context-menu-item"
+        onClick={() => createList("number")}
+      >
+        <span className="context-menu-item-icon">
           <NumberedListIcon />
         </span>
         Нумерованный список
       </button>
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <button className="context-menu-item" onClick={() => createList("check")}>
+        <span className="context-menu-item-icon">
           <CheckListIcon />
         </span>
         Список задач
       </button>
-      <div className='context-menu-divider' />
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <div className="context-menu-divider" />
+      <button className="context-menu-item">
+        <span className="context-menu-item-icon">
           <H1Icon />
         </span>
         Заголовок уровня 1
       </button>
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <button className="context-menu-item">
+        <span className="context-menu-item-icon">
           <H2Icon />
         </span>
         Заголовок уровня 2
       </button>
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <button className="context-menu-item">
+        <span className="context-menu-item-icon">
           <H3Icon />
         </span>
         Заголовок уровня 3
       </button>
-      <button className='context-menu-item'>
-        <span className='context-menu-item-icon'>
+      <button className="context-menu-item">
+        <span className="context-menu-item-icon">
           <RemoveHeaderIcon />
         </span>
         Убрать заголовок

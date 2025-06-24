@@ -10,7 +10,7 @@
 }
 
 .text-editor-content-editable {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   padding: 0px 32px 70px 32px;
   min-height: 450px;
   width: 70vw;
@@ -28,7 +28,7 @@
 }
 
 .editor-heading-h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 28px;
   line-height: 36px;
@@ -38,7 +38,7 @@
 }
 
 .editor-paragraph {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -89,4 +89,87 @@
 
 .editor-text-capitalize {
   text-transform: capitalize;
+}
+
+.listItem {
+  margin: 0 32px;
+  font-size: 14px;
+}
+.listItem::marker {
+  color: var(--listitem-marker-color);
+  background-color: var(--listitem-marker-background-color);
+  font-family: var(--listitem-marker-font-family);
+  font-size: var(--listitem-marker-font-size);
+}
+.listItemChecked,
+.listItemUnchecked {
+  position: relative;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  list-style-type: none;
+  outline: none;
+  display: block;
+  min-height: 1.5em;
+  text-align: left;
+  line-height: 1.5em;
+}
+.listItemChecked > *,
+.listItemUnchecked > * {
+  margin-left: 0.01em;
+}
+.listItemUnchecked:before,
+.listItemChecked:before {
+  content: "\200B";
+  width: 0.9em;
+  height: 0.9em;
+  top: 50%;
+  left: 0;
+  cursor: pointer;
+  display: block;
+  background-size: cover;
+  position: absolute;
+  transform: translateY(-50%);
+}
+.listItemChecked {
+  text-decoration: none;
+}
+.listItemUnchecked:focus:before,
+.listItemChecked:focus:before {
+  border-radius: 2px;
+}
+.listItemUnchecked:before {
+  border: 3px solid #838790;
+  border-radius: 2px;
+  width: 12px;
+  height: 12px;
+}
+.listItemChecked:before {
+  border-radius: 2px;
+  background-color: #045bff;
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+}
+.listItemChecked:after {
+  content: "";
+  cursor: pointer;
+  border-color: #fff;
+  border-style: solid;
+  position: absolute;
+  display: block;
+  top: 45%;
+  width: 4px;
+  left: 0.4em;
+  height: 8px;
+  transform: translateY(-50%) rotate(45deg);
+  border-width: 0 2px 2px 0;
+}
+.nestedListItem {
+  list-style-type: none;
+}
+.nestedListItem:before,
+.estedListItem:after {
+  display: none;
 }
